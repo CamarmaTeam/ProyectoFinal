@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatInputModule, MatButtonModule } from '@angular/material/';
+import { MatInputModule, MatButtonModule, MatFormFieldModule } from '@angular/material/';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,7 +25,10 @@ import { SignInComponent } from './sign-in/sign-in.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
