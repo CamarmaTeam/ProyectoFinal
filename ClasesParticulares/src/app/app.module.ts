@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatInputModule, MatButtonModule, MatFormFieldModule } from '@angular/material/';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,7 +29,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
     MatButtonModule,
     MatFormFieldModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
