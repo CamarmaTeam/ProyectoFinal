@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule } from '@angular/material/';
+import { MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatCheckboxModule } from '@angular/material/';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -29,6 +29,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
+    MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule
