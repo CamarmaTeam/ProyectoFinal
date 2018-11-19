@@ -10,6 +10,7 @@ export class SignInComponent implements OnInit {
 
 	checked: boolean;
 	show: boolean = true;
+	hide: boolean ;
 
 	formRegistro: FormGroup;
 	constructor() {
@@ -32,6 +33,7 @@ export class SignInComponent implements OnInit {
 				]) 
 		})
 		this.checked = false;
+		this.hide = true;
 	}
 
 	ngOnInit() {
