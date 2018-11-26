@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatCheckboxModule } from '@angular/material/';
+import { MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatCheckboxModule,MatSelectModule } from '@angular/material/';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -31,6 +31,7 @@ import { PSelectComponent } from './p-select/p-select.component';
     MatIconModule,
     MatFormFieldModule,
     MatCheckboxModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule
