@@ -6,12 +6,12 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-4" ></div>
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-8" *ngFor="let clase of arrClases">
       <div class="mx-auto">
         <mat-card class="example-card mx-auto mt-3 mb-3">
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>CLASE DE INGLES en <i class="map marker alternate icon"></i>Alcala de Henares  </mat-card-title>
+            <mat-card-title>{{clase.nombreclase}} en <i class="map marker alternate icon"></i>Alcala de Henares  </mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <p>

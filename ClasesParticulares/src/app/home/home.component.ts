@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ClasesService } from '../clases.service';
+import { ApiService } from '../api.service';
 import { Clase } from '../models/clase.model'
 
 @Component({
@@ -11,15 +11,15 @@ export class HomeComponent implements OnInit {
 
 	arrClases: Clase[]
 
-  constructor(private clasesService: ClasesService) { 
+  constructor(private apiService: ApiService) { 
   	this.arrClases = []
   }
 
   ngOnInit() {
 
-  	this.clasesService.getAll().then((res) => {
+  	this.apiService.getClases().then((res) => {
+  		//this.arrClases = res.json()
   		this.arrClases = res.json()
-  		console.log(res.json())
   	})
   }
 

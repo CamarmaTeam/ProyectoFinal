@@ -10,12 +10,8 @@ import Pselect from 'pselect.js';
 })
 export class SignInComponent implements OnInit {
 
-	checked: boolean;
-
-	show: boolean ;
-
-	
-	hide: boolean ;
+	checked: boolean;	
+	hide: boolean;
 
 	formRegistro: FormGroup;
 	constructor() {
@@ -41,21 +37,27 @@ export class SignInComponent implements OnInit {
 			telefono: new FormControl('',[
 				Validators.required
 				]) 
-		})
+		}, {validators: [this.validarPassword]})
 		this.checked = false;
-		this.show = true;
 		this.hide = true;
 	}
 	ngOnInit() {
+	}
+	envioRegistro(){
+
 	}
 	mensajeErrorEmail() {
 		return this.formRegistro.controls.email.hasError('required') ? 'Debes introducir un email' :
 		this.formRegistro.controls.email.hasError('email') ? 'Email invalido' :
 		'';
 	}
-	envioRegistro(){
-
-	}
 	
+	validarPassword(group){
+		if(group.controls.password != group.controls.passwordConfirm){
+			
+		}else{
+			return null
+		}
+	}
 
 }
