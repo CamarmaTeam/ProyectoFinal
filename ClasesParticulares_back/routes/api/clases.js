@@ -11,4 +11,10 @@ router.get('/', (req, res) => {
 	})
 })
 
+// POST http://localhost:3000/api/clases/filter
+
+// POST http://localhost:3000/api/clases/
+
+
+
 module.exports = router;
