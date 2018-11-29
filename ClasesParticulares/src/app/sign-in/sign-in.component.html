@@ -11,13 +11,14 @@
 		</mat-form-field>
 		<mat-form-field class="p-1 col-12">
 			<input  matInput placeholder="Email*" formControlName="email">
-			<mat-error *ngIf="formRegistro.controls.email.invalid">{{mensajeErrorEmail()}}</mat-error>
+			<mat-error *ngIf="formRegistro.controls.email.invalid">hola hola</mat-error>
 		</mat-form-field>
 		<mat-form-field class="p-1 col-12" hintLabel="Min 6 caracteres">
-			<input  matInput placeholder="Contraseña*" [type]="hide ? 'password' : 'text'" formControlName="password">
+			<input  matInput placeholder="Contraseña*" [type]="hide ? 'password' : 'text'" formControlName="contrasena">
 		</mat-form-field>
 		<mat-form-field class="p-1 col-12">
-			<input  matInput placeholder="Confirmar contraseña*" [type]="hide ? 'password' : 'text'" formControlName="passwordConfirm">
+			<input  matInput placeholder="Confirmar contraseña*" [type]="hide ? 'password' : 'text'" formControlName="confirmarContrasena">
+			 <mat-error *ngIf="formRegistro.controls.confirmarContrasena.touched">La contraseña debe coincidir</mat-error> 
 		</mat-form-field>
 		<mat-checkbox (change)="hide = !hide" class="pr-5" color="primary">Mostrar contraseña</mat-checkbox>
 		<mat-form-field class="p-1 col-12">
@@ -37,5 +38,8 @@
 		</form>
 	</div>
 </div>
+{{ formRegistro.errors | json }}
+{{formRegistro.controls.confirmarContrasena.touched | json}}
+
 
 

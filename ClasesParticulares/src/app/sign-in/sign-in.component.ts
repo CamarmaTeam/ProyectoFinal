@@ -19,29 +19,36 @@ export class SignInComponent implements OnInit {
 			nombre: new FormControl('',[
 				Validators.required,
 				Validators.maxLength(25),
+				Validators.pattern(/^[a-zA-Z]+$/)
 				]),
 			apellidos: new FormControl('',[
 				Validators.required,
 				Validators.maxLength(40),
+				Validators.pattern(/^[a-zA-Z ]+$/)
 				]),
 			email: new FormControl('', [
 				Validators.required,
 				Validators.email
 				]),
-			password: new FormControl('',[
+			contrasena: new FormControl('1234',[
 				Validators.required
 				]),
-			passwordConfirm: new FormControl('',[
+			confirmarContrasena: new FormControl('9876',[
 				Validators.required
 				]),
 			telefono: new FormControl('',[
-				Validators.required
+				Validators.required,
+				Validators.minLength(9),
+				Validators.pattern(/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/)
 				]) 
 		}, {validators: [this.validarPassword]})
 		this.checked = false;
 		this.hide = true;
 	}
 	ngOnInit() {
+		console.log(this.formRegistro.controls.contrasena.value)
+		console.log(this.formRegistro.controls.confirmarContrasena.value)
+
 	}
 	envioRegistro(){
 
@@ -52,10 +59,14 @@ export class SignInComponent implements OnInit {
 		'';
 	}
 	
-	validarPassword(group){
-		if(group.controls.password != group.controls.passwordConfirm){
-			
+	validarPassword(group: FormGroup){
+		if(group.controls.contrasena.value != group.controls.confirmarContrasena.value  ){
+			console.log('no coincide')
+			return {
+				coincidencia: true
+			}
 		}else{
+			console.log('coincide')
 			return null
 		}
 	}

@@ -2,7 +2,7 @@ export class Clase{
 	fk_usuarioprofesor: number;
 	nombreclase: string;
 	rama: string;	
-	descripción: string
+	descripcion: string
 	nivel: string;
 	foto: string;
 	ciudad: string;
@@ -15,7 +15,7 @@ export class Clase{
 		this.fk_usuarioprofesor = values.fk_usuarioprofesor
 		this.nombreclase = values.nombreclase
 		this.rama = values.rama
-		this.descripción = values.descripción
+		this.descripcion = values.descripcion
 		this.nivel = values.nivel
 		this.foto = values.foto
 		this.ciudad = values.ciudad
