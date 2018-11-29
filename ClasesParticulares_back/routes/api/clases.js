@@ -11,10 +11,13 @@ router.get('/', (req, res) => {
 	})
 })
 
-// POST http://localhost:3000/api/clases/filter
-
 // POST http://localhost:3000/api/clases/
 
-
+router.post('/', (req, res) => {
+	claseModel.insert(req.body, (err, result) => {
+		if (err) return res.json ({ error: err.message})
+		res.json(result.insertId)
+	})
+})
 
 module.exports = router;
