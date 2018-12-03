@@ -1,7 +1,17 @@
-<h2>Seleccione provincia</h2>
-<select class="ui dropdown" id="ps-prov" #provincia></select>
-<select class="ui dropdown" id="ps-mun" #municipio></select>
+<div >
+<select class="color col-12 p-0" placeholder="Seleccione provincia" id="ps-prov" (change)="onChangeProv($event)" #provincia></select>
+</div>
+<hr>
+<div>
+<select class="color col-12 p-0" placeholder="Seleccione municipio" id="ps-mun" (change)="onChangeMun($event)" #municipio></select>
+</div>
+<hr>
 
+<!-- <mat-form-field>
+  <select matNativeControl placeholder="Seleccione municipio" id="ps-mun" #municipio>
+    
+  </select>
+</mat-form-field> -->
 <!--
 <mat-form-field>
   <mat-select id="ps-prov" #provincia placeholder="Seleccione provincia">

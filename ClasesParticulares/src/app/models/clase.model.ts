@@ -9,6 +9,7 @@ export class Clase{
 	provincia: string;	
 	claseIn: boolean;
 	claseOut: boolean;
+	distanciaClase: number;
 
 	constructor(values) {
 
@@ -22,6 +23,7 @@ export class Clase{
 		this.provincia = values.provincia		
 		this.claseIn = values.claseIn
 		this.claseOut = values.claseOut
+		this.distanciaClase = values.distanciaClase
 
 	}
 }

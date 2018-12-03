@@ -17,10 +17,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-  	//this.apiService.getClases().then((res) => {
-  		//this.arrClases = res.json()
-  	//	this.arrClases = res.json()
-  	//})
+  	this.apiService.getClases().then((res) => {
+  		this.arrClases = res.json()
+  		
+  	})
   }
 
 }
