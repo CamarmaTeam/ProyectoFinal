@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { ApiService } from '../api.service';
 
 @Component({
 	selector: 'app-log-in',
@@ -11,20 +12,24 @@ export class LogInComponent implements OnInit {
 	formLogIn: FormGroup;
 	hide: boolean ;
 	eye: string;
+	tipoUsuario: string;
+
+
 	
 	
-	constructor() {
+	constructor(private apiService: ApiService) {
 		this.formLogIn = new FormGroup({
 			email: new FormControl('', [
 				Validators.required,
 				Validators.email
 				]),
-			password: new FormControl('',[
+			contrasena: new FormControl('',[
 				Validators.required
 				])
 		})
 		this.hide = true;
 		this.eye = ' grey eye icon';
+		this.tipoUsuario = 'alumno'
 	}
 
 	ngOnInit() {
@@ -41,8 +46,22 @@ export class LogInComponent implements OnInit {
 	}
 
 	envioFormulario(){
+		if(this.tipoUsuario == 'alumno'){
+			this.apiService.postLoginUsuario(this.formLogIn.value).then((res) => {
+				res.json()
+				console.log(res.json())
+			})
+			console.log(this.formLogIn.value)
+			console.log('inicio sesion usuario')
+		}else{
+			this.apiService.postLoginProfsor(this.formLogIn.value).then((res) => {
 
+			})
+			console.log('inicio sesión profesor')
+		}
 	}
 
-
+	handleClickInicio($event){
+		this.tipoUsuario = $event.currentTarget.id;
+	}
 }

@@ -14,13 +14,14 @@ import { FooterComponent } from './footer/footer.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { PSelectComponent } from './p-select/p-select.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent, 
-    FooterComponent, LogInComponent, SignInComponent, PSelectComponent
+    FooterComponent, LogInComponent, SignInComponent, PSelectComponent, PerfilComponent
   ],
   imports: [
     BrowserModule,
