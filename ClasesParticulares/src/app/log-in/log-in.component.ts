@@ -13,9 +13,6 @@ export class LogInComponent implements OnInit {
 	hide: boolean ;
 	eye: string;
 	tipoUsuario: string;
-
-
-	
 	
 	constructor(private apiService: ApiService) {
 		this.formLogIn = new FormGroup({
@@ -48,17 +45,18 @@ export class LogInComponent implements OnInit {
 	envioFormulario(){
 		if(this.tipoUsuario == 'alumno'){
 			this.apiService.postLoginUsuario(this.formLogIn.value).then((res) => {
-				res.json()
+				localStorage.setItem("token",res.json().token);
 				console.log(res.json())
-			})
-			console.log(this.formLogIn.value)
+			})			
 			console.log('inicio sesion usuario')
 		}else{
 			this.apiService.postLoginProfsor(this.formLogIn.value).then((res) => {
-
+				localStorage.setItem("token",res.json().token);
+				console.log(res.json().token)
 			})
 			console.log('inicio sesión profesor')
 		}
+		console.log(this.formLogIn.value)
 	}
 
 	handleClickInicio($event){

@@ -6,7 +6,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 })
 export class ApiService {
 
-	baseUrl: string = 'http://dc4a02aa.ngrok.io/api'
+	baseUrl: string = 'http://22fbcb8b.ngrok.io/api'
 
 	constructor(private http: Http) { }
 	// Obtener TODAS las CLASES

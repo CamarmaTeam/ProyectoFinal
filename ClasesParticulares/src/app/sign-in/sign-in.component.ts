@@ -84,15 +84,13 @@ export class SignInComponent implements OnInit {
 		if(this.registrarUsuario == 'alumno'){
 			this.usuario = new Usuario(this.formRegistro.value)
 			this.apiService.postUsuario(this.usuario).then((res) => {
-				const response = res.json()
-				console.log(response)
+				console.log(res.json())
 			})
 			console.log('registrar alumno')
 		}else{
 			this.usuarioProfesor = new UsuarioProfesor(this.formRegistro.value)
 			this.apiService.postUsuarioProfesor(this.usuarioProfesor).then((res) => {
-				const response = res.json()
-				console.log(response)
+				console.log(res.json())
 			})
 			console.log('registrar profesor')
 		}
