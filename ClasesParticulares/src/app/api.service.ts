@@ -6,7 +6,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 })
 export class ApiService {
 
-	baseUrl: string = 'http://22fbcb8b.ngrok.io/api'
+	baseUrl: string = 'http://169ce6be.ngrok.io/api'
 
 	constructor(private http: Http) { }
 	// Obtener TODAS las CLASES
@@ -26,7 +26,7 @@ export class ApiService {
 		return this.http.post(`${this.baseUrl}/usuarios/login`,values).toPromise()
 	}
 	//Iniciar sesión PROFESOR
-	postLoginProfsor(values){
+	postLoginProfesor(values){
 		return this.http.post(`${this.baseUrl}/usuariosProfesor/login`, values).toPromise()
 	}
 

@@ -15,6 +15,7 @@
 			<input  matInput placeholder="Introduce tu contraseña" formControlName="contrasena" [type]="hide ? 'password' : 'text'">
 			<i [ngClass]="eye" matSuffix (click)="handleClick()"></i>
 		</mat-form-field>
+		<p *ngIf="error">La contraseña y/o email son incorrectos</p>
 		<button class="col-12  ui inverted red button">Entrar</button>
 	</form>
 </div>

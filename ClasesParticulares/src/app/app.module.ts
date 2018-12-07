@@ -38,7 +38,7 @@ import { PerfilComponent } from './perfil/perfil.component';
     MatRadioModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

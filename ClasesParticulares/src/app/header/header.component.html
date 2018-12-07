@@ -2,11 +2,11 @@
 	<a class="navbar-brand" href="#">
 		<img src="../../assets/logo.png" width="60" height="50" alt="">
 	</a>
-	<div class="text-right">
+	<div *ngIf="!this.loginService.isLogin()" class="text-right">
 		<a class="navbar-brand m-0 p-2 border-right" [routerLink]="['/login']">Identifícate</a>
 		<a class="navbar-brand m-0 p-2 border-left" [routerLink]="['/signin']">Regístrate</a>
 	</div>
-	<div class="ui dropdown">
+	<div *ngIf="this.loginService.isLogin()" class="ui dropdown">
 		
 		<div class="ui top right pointing dropdown " [matMenuTriggerFor]="menu">
 			Perfil
@@ -20,11 +20,11 @@
 					<i class="user icon"></i>
 					Mi cuenta
 				</div>
-				<div class="item" mat-menu-item>
+				<div *ngIf="this.loginService.isProfesor()" class="item" mat-menu-item>
 					<i class="book icon"></i>
 					Mis clases
 				</div>
-				<div class="item" mat-menu-item>
+				<div (click)="handleClick()"class="item" mat-menu-item>
 					<i class="sign-out icon"></i>
 					Cerrar sesión
 				</div>
