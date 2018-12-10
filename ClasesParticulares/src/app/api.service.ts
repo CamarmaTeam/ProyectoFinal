@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { LoginService} from './login.service';
+
 
 @Injectable({
 	providedIn: 'root'
@@ -7,8 +9,11 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 export class ApiService {
 
 	baseUrl: string = 'http://localhost:3000/api'
+	token: string 
 
-	constructor(private http: Http) { }
+	constructor(private http: Http, private loginService: LoginService) { 
+		this.token = ''
+	}
 	// Obtener TODAS las CLASES
 	getClases(){
 		return this.http.get(`${this.baseUrl}/clases`).toPromise()
@@ -28,6 +33,16 @@ export class ApiService {
 	//Iniciar sesión PROFESOR
 	postLoginProfesor(values){
 		return this.http.post(`${this.baseUrl}/usuariosProfesor/login`, values).toPromise()
+	}
+
+	//Datos del Usuario
+	datosPerfil(){
+		this.token = localStorage.getItem('token')
+		if(this.loginService.isProfesor() === false) {
+			return this.http.get(`${this.baseUrl}/usuarios/token/${this.token}`).toPromise()
+		}else {
+			return this.http.get(`${this.baseUrl}/usuariosprofesor/token/${this.token}`).toPromise()
+		}
 	}
 
 	

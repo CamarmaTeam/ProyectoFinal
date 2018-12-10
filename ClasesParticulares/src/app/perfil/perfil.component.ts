@@ -15,6 +15,8 @@ export class PerfilComponent implements OnInit {
 
 	usuario: Usuario;
 	usuarioProfesor: UsuarioProfesor;
+	datos: any[];
+	
 
 	checked: boolean;	
 	hide: boolean;
@@ -25,32 +27,32 @@ export class PerfilComponent implements OnInit {
 	formModificar: FormGroup;
 	constructor(private apiService: ApiService) {
 		this.formModificar = new FormGroup({
-			nombre: new FormControl('sad',[
+			nombre: new FormControl('',[
 				Validators.required,
 				Validators.maxLength(25),
 				Validators.pattern(/(^$)|(^([^\-!#\$%&\(\)\*,\./:;\?@\[\\\]_\{\|\}¨ˇ“”€\+<=>§°\d\s¤®™©]| )+$)/)
 				]),
-			apellidos: new FormControl('asd',[
+			apellidos: new FormControl('',[
 				Validators.required,
 				Validators.maxLength(40),
 				Validators.pattern(/(^$)|(^([^\-!#\$%&\(\)\*,\./:;\?@\[\\\]_\{\|\}¨ˇ“”€\+<=>§°\d\s¤®™©]| )+$)/)
 				]),
-			email: new FormControl('a@es.es', [
+			email: new FormControl('', [
 				Validators.required,
 				Validators.email
 				]),
 			provincia: new FormControl(''),
 			ciudad: new FormControl(''),
-			contrasena: new FormControl('123456a',[
+			contrasena: new FormControl('',[
 				Validators.required,
 				Validators.pattern(/^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$/),
 				Validators.maxLength(20),
 				]),
-			confirmarContrasena: new FormControl('123456a',[
+			confirmarContrasena: new FormControl('',[
 				Validators.required,
 				Validators.minLength(6),
 				]),
-			telefono: new FormControl('123456789',[
+			telefono: new FormControl('',[
 				Validators.required,
 				Validators.minLength(9),
 				Validators.pattern(/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/)
@@ -67,6 +69,21 @@ export class PerfilComponent implements OnInit {
 		this.registrarUsuario = 'alumno';
 	}
 	ngOnInit() {
+
+		this.apiService.datosPerfil().then((res) => {
+			const response = res.json()
+			this.datos = response[0]
+			this.formModificar.controls.nombre.setValue(this.datos.nombre)
+			this.formModificar.controls.apellidos.setValue(this.datos.apellidos)
+			this.formModificar.controls.email.setValue(this.datos.email)
+			this.formModificar.controls.provincia.setValue(this.datos.provincia)
+			this.formModificar.controls.ciudad.setValue(this.datos.ciudad)
+			this.formModificar.controls.telefono.setValue(this.datos.telefono)
+			this.formModificar.controls.foto.setValue(this.datos.foto)
+			this.formModificar.controls.biografia.setValue(this.datos.biografia)
+			this.provincia = this.datos.provincia
+			this.ciudad = this.datos.ciudad
+		})
 	}
 	envioRegistro(){
 		this.formModificar.value.provincia = this.provincia

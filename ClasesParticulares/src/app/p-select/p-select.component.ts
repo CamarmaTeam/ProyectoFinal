@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input, SimpleChange } from '@angular/core';
 import Pselect from 'pselect.js'
 
 @Component({
@@ -12,6 +12,8 @@ export class PSelectComponent implements OnInit {
 
 	@Output() envioProv = new EventEmitter
 	@Output() envioMun = new EventEmitter
+	@Input() ciudadP: string
+	@Input() provinciaP: string
 
 	provincia: string;
 	municipio: string;
@@ -25,13 +27,27 @@ export class PSelectComponent implements OnInit {
 		new Pselect().create(this.prov.nativeElement, this.muni.nativeElement);
 	}
 
+	ngOnChanges(changes: SimpleChange) {
+		for (let propName in changes) {
+			let chng = changes[propName];
+			let cur = JSON.stringify(chng.currentValue);
+			let prev = JSON.stringify(chng.previousValue);
+
+			console.log(propName, cur);
+
+			if (propName === "provinciaP" && cur !== ""){
+				this.provincia = cur
+			} 
+		}
+	}
+
 	onChangeProv($event){
 		this.provincia = $event.target.selectedOptions[0].label
 		this.envioProv.emit(this.provincia)
 		setTimeout(() => {
 			this.municipio = this.muni.nativeElement.selectedOptions[0].label
 			this.envioMun.emit(this.municipio)
-			console.log(this.municipio)
+			
 		}, 100)
 	}
 

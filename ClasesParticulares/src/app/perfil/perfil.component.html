@@ -13,7 +13,7 @@
 			<input  matInput placeholder="Email*" formControlName="email">
 			<mat-error>Email inválido</mat-error>
 		</mat-form-field>
-		<app-p-select (envioProv)="handleEnvioProv($event)" (envioMun)="handleEnvioMun($event)"></app-p-select>
+		<app-p-select [ciudadP]="ciudad" [provinciaP]="provincia" (envioProv)="handleEnvioProv($event)" (envioMun)="handleEnvioMun($event)"></app-p-select>
 		<mat-form-field class="p-1 col-12" hintLabel="Entre 6 y 20 caracteres,incluir número y letra">
 			<input matInput placeholder="Contraseña*" [type]="hide ? 'password' : 'text'" formControlName="contrasena">
 		</mat-form-field>
@@ -32,7 +32,7 @@
 		<mat-form-field  *ngIf="checked" class="p-1 col-12">
 			<textarea matInput placeholder="Biografía (opcional)" formControlName="biografia"></textarea>
 		</mat-form-field>
-		<button class="ui inverted red button" [disabled]="!formModificar.valid">Modificar</button>
+		<button class="ui inverted red button" [disabled]="!formModificar.valid">Guardar Cambios</button>
 		<p *ngIf="formModificar.errors && formModificar.controls.confirmarContrasena.touched" class="colorError">La contraseña debe coincidir</p>
 		<p class="colorError">{{mensajeError}}</p>
 		{{mensajeError | json}}
