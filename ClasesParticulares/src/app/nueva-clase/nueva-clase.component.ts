@@ -23,13 +23,16 @@ export class NuevaClaseComponent implements OnInit {
 			nivel: new FormControl(''),
 			claseIn: new FormControl(''),
 			claseOut: new FormControl(''),
-			enciudad: new FormControl(''),
-			fueraciudad: new FormControl('')
+			claseCiudad: new FormControl(''),
+			claseFueraCiudad: new FormControl('')
 		})
 		this.mostrar = false
 	}
 
 	ngOnInit() {
+		this.apiService.datosPerfil().then((res) => {
+			console.log(res.json())
+		})
 	}
 
 	nuevaClase(){

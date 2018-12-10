@@ -14,8 +14,8 @@ exports.getByFkUsuarioProfesor = (fk_usuarioprofesor, done) => {
 	})
 }
 
-exports.insert = ({fk_usuarioprofesor, nombreclase, rama, descripcion, nivel, foto, ciudad, provincia, clasein, claseout}, done) => {
-	db.get().query('INSERT INTO clases VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [fk_usuarioprofesor, nombreclase, rama, descripcion, nivel, foto, ciudad, provincia, clasein, claseout], (err, result) => {
+exports.insert = ({fk_usuarioprofesor, nombreclase, rama, descripcion, nivel, foto, ciudad, provincia, clasein, claseout, claseciudad, clasefueraciudad }, done) => {
+	db.get().query('INSERT INTO clases VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [fk_usuarioprofesor, nombreclase, rama, descripcion, nivel, foto, ciudad, provincia, clasein, claseout, claseciudad, clasefueraciudad], (err, result) => {
 		if(err) return done(err, null)
 		done(null, result)
 	})
