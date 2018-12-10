@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark  p-3">
+<nav class="navbar navbar-dark p-1 p-md-3">
 	<a class="navbar-brand" href="#">
 		<img src="../../assets/logo.png" width="60" height="50" alt="">
 	</a>
@@ -6,6 +6,7 @@
 		<a class="navbar-brand m-0 p-2 border-right" [routerLink]="['/login']">Identifícate</a>
 		<a class="navbar-brand m-0 p-2 border-left" [routerLink]="['/signin']">Regístrate</a>
 	</div>
+	<button *ngIf="this.loginService.isProfesor()" class="ui inverted secondary button"><i class="pencil alternate icon"></i>Añadir clase</button>
 	<div *ngIf="this.loginService.isLogin()" class="ui dropdown">
 		
 		<div class="ui top right pointing dropdown " [matMenuTriggerFor]="menu">
