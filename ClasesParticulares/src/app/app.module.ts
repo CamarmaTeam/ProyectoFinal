@@ -15,13 +15,14 @@ import { LogInComponent } from './log-in/log-in.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { PSelectComponent } from './p-select/p-select.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { NuevaClaseComponent } from './nueva-clase/nueva-clase.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent, 
-    FooterComponent, LogInComponent, SignInComponent, PSelectComponent, PerfilComponent
+    FooterComponent, LogInComponent, SignInComponent, PSelectComponent, PerfilComponent, NuevaClaseComponent
   ],
   imports: [
     BrowserModule,
