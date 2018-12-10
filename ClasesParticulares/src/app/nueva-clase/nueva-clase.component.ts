@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { ApiService } from '../api.service';
+import { Clase } from '../models/clase.model';
 
 
 @Component({
@@ -11,11 +12,12 @@ import { ApiService } from '../api.service';
 export class NuevaClaseComponent implements OnInit {
 
 	mostrar: boolean;
+	clase: Clase;
 
 	formClase: FormGroup;
 	constructor(private apiService: ApiService) {
 		this.formClase = new FormGroup({
-			nombre: new FormControl(''),
+			nombreclase: new FormControl(''),
 			rama: new FormControl(''),
 			descripcion: new FormControl(''),
 			nivel: new FormControl(''),
@@ -31,7 +33,10 @@ export class NuevaClaseComponent implements OnInit {
 	}
 
 	nuevaClase(){
-		
+		this.clase = new Clase(this.formClase)
+		this.apiService.postClaseNueva(this.clase).then((res) => {
+			console.log(res.json())
+		})
 	}
 	mostrarDistancia(){
 		this.mostrar = !this.mostrar

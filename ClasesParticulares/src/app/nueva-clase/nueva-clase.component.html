@@ -4,7 +4,7 @@
 		[formGroup]="formClase"
 		(ngSubmit)="nuevaClase()">
 		<mat-form-field class="p-1 col-12">
-			<input matInput placeholder="Nombre" formControlName="nombre">
+			<input matInput placeholder="Títuo de la clase" formControlName="nombreclase">
 		</mat-form-field>
 		<mat-form-field class="p-1 col-12">
 			<input matInput placeholder="Rama" formControlName="rama">
@@ -19,7 +19,7 @@
 		<mat-checkbox class=" p-1" color="primary" formControlName="claseIn" value="claseIn">En mi casa</mat-checkbox>
 		<mat-checkbox class="col-12 p-1" color="primary" (click)="mostrarDistancia()" formControlName="claseOut" value="claseOut">Casas del alumno</mat-checkbox>
 		<p *ngIf="mostrar">Hasta dónde está dispuesto a trasladarse para dar la clase?</p>
-		<mat-checkbox *ngIf="mostrar" class="col-12 p-1" color="primary" formControlName="enciudad" value="ciudad">Sólo mi ciudad</mat-checkbox>
+		<mat-checkbox *ngIf="mostrar" class="col-12 p-1" color="primary" formControlName="enciudad" value="ciudad">Mi ciudad</mat-checkbox>
 		<mat-checkbox *ngIf="mostrar" class="col-12 p-1" color="primary" formControlName="fueraciudad" value="fueraciudad">Fuera de mi ciudad</mat-checkbox>
 		<button class="ui inverted red button">Añadir clase</button>
 	</form>

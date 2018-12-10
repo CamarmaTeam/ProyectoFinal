@@ -18,6 +18,10 @@ export class ApiService {
 	getClases(){
 		return this.http.get(`${this.baseUrl}/clases`).toPromise()
 	}
+	//Añadir clase 
+	postClaseNueva(values){
+		return this.http.post(`${this.baseUrl}/clases`, values).toPromise()
+	}	
 	//Registrar USUARIO
 	postUsuario(values){
 		return this.http.post(`${this.baseUrl}/usuarios`, values).toPromise()
