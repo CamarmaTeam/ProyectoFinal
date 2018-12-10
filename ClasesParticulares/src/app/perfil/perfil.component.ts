@@ -15,7 +15,7 @@ export class PerfilComponent implements OnInit {
 
 	usuario: Usuario;
 	usuarioProfesor: UsuarioProfesor;
-	datos: any[];
+	datos: any;
 	
 
 	checked: boolean;	
@@ -73,6 +73,8 @@ export class PerfilComponent implements OnInit {
 		this.apiService.datosPerfil().then((res) => {
 			const response = res.json()
 			this.datos = response[0]
+			console.log(this.datos)
+			
 			this.formModificar.controls.nombre.setValue(this.datos.nombre)
 			this.formModificar.controls.apellidos.setValue(this.datos.apellidos)
 			this.formModificar.controls.email.setValue(this.datos.email)
