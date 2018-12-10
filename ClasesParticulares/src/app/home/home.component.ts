@@ -23,6 +23,18 @@ export class HomeComponent implements OnInit {
   	})
   }
 
+  claseIn(){
+     return false
+  }
+
+  claseOut(){
+     return false
+  }
+
+  pagoOnline(){
+    return true
+  }
+
 }
 
 export class CardFancyExample {}

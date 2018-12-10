@@ -49,7 +49,7 @@ router.post('/login', (req, res) => {
 		if (err) return res.json({error: err.message})
 		if (rows.length === 0) return res.json ({error: 'El email y/o la contraseña son incorrectos'})
 		if (rows[0].contrasena !== SHA256(req.body.contrasena).toString()) return res.json({error: 'El email y/o la contraseña son incorrectos'})
-		crypto.randomBytes(12, function(err, buffer) {
+		crypto.randomBytes(7, function(err, buffer) {
 			let tokenG = buffer.toString('hex')
 			usuarioModel.insertToken(tokenG, email, (err, result) => {
 				if (err) return res.json ({ error: err.message})

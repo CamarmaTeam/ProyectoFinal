@@ -5,17 +5,16 @@
 </ul> -->
 <div class="container">
   <div class="row">
-    <div class="col-12 col-md-4" ></div>
     <div class="col-12 col-md-8" *ngFor="let clase of arrClases">
       <div class="mx-auto">
         <mat-card class="example-card mx-auto mt-3 mb-3">
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{clase.nombreclase}} en <i class="map marker alternate icon"></i>Alcala de Henares  </mat-card-title>
+            <mat-card-title>{{clase.nombreclase}} en <i class="map marker alternate icon"></i>{{clase.ciudad}}</mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <p>
-             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum voluptatem doloribus, odio doloremque, mollitia fugiat tempore quisquam! Ducimus voluptatem dicta, fuga sapiente illo mollitia alias, ipsum est perspiciatis eaque sunt?
+             {{clase.descripcion}}
            </p>
          </mat-card-content>
          <mat-card-actions>
@@ -36,9 +35,9 @@
          </div>
          <div class=" text-center text-md-right text-xl-right col-12 col-md-6 col-xl-4">
            <i class="red big share square link icon"></i>
-           <i class="red big car icon"></i>
-           <i class="red big building icon"></i>
-           <i class="red big cc paypal volume icon"></i>
+           <i *ngIf="claseOut()" class="red big car icon"></i>
+           <i *ngIf="claseIn()" class="red big building icon"></i>
+           <i *ngIf="pagoOnline()" class="red big cc paypal volume icon"></i>
          </div>
        </div>
      </mat-card-actions>
