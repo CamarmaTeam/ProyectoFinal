@@ -30,6 +30,15 @@ export class ApiService {
 	postUsuarioProfesor(values){
 		return this.http.post(`${this.baseUrl}/usuariosProfesor`, values).toPromise()
 	}
+	//Modificar USUARIO
+	modificarUsuario(idUser, values){
+		let id = idUser
+		return this.http.post(`${this.baseUrl}/usuarios/modificar/${id}`, values).toPromise()
+	}
+	//Modificar PROFESOR
+	modificarUsuarioProfesor(values){
+		return this.http.post(`${this.baseUrl}/usuariosProfesor/modificar/`, values).toPromise()
+	}
 	//Iniciar sesión USUARIO
 	postLoginUsuario(values){
 		return this.http.post(`${this.baseUrl}/usuarios/login`,values).toPromise()

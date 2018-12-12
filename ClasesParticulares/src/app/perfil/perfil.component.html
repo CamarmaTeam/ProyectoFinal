@@ -13,7 +13,7 @@
 			<input  matInput placeholder="Email*" formControlName="email">
 			<mat-error>Email inválido</mat-error>
 		</mat-form-field>
-		<app-p-select tipo="perfil" [ciudadP]="ciudad" [provinciaP]="provincia" (envioProv)="handleEnvioProv($event)" (envioMun)="handleEnvioMun($event)"></app-p-select>
+		<app-p-select tipo="perfil" [ciudadBD]="ciudadR" [provinciaBD]="provinciaR" (envioProv)="handleEnvioProv($event)" (envioMun)="handleEnvioMun($event)"></app-p-select>
 		<mat-form-field class="p-1 col-12" hintLabel="Entre 6 y 20 caracteres,incluir número y letra">
 			<input matInput placeholder="Contraseña*" [type]="hide ? 'password' : 'text'" formControlName="contrasena">
 		</mat-form-field>

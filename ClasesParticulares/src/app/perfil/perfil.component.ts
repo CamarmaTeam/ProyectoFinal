@@ -20,8 +20,10 @@ export class PerfilComponent implements OnInit {
 
 	checked: boolean;	
 	hide: boolean;
-	provincia: string;
-	ciudad: string;
+	provinciaR: string;
+	provinciaE: string;
+	ciudadR: string;
+	ciudadE: string;
 	registrarUsuario: string;
 
 	formModificar: FormGroup;
@@ -64,8 +66,8 @@ export class PerfilComponent implements OnInit {
 
 		this.checked = false;
 		this.hide = true;
-		this.provincia = '';
-		this.ciudad = '';
+		this.provinciaR = '';
+		this.ciudadR = '';
 		this.registrarUsuario = 'alumno';
 	}
 	ngOnInit() {
@@ -73,7 +75,6 @@ export class PerfilComponent implements OnInit {
 		this.apiService.datosPerfil().then((res) => {
 			const response = res.json()
 			this.datos = response[0]
-			console.log(this.datos)
 			
 			this.formModificar.controls.nombre.setValue(this.datos.nombre)
 			this.formModificar.controls.apellidos.setValue(this.datos.apellidos)
@@ -83,37 +84,34 @@ export class PerfilComponent implements OnInit {
 			this.formModificar.controls.telefono.setValue(this.datos.telefono)
 			this.formModificar.controls.foto.setValue(this.datos.foto)
 			this.formModificar.controls.biografia.setValue(this.datos.biografia)
-			this.provincia = this.datos.provincia
-			this.ciudad = this.datos.ciudad
+			this.provinciaR = this.datos.provincia
+			this.ciudadR = this.datos.ciudad
 		})
 	}
 	envioRegistro(){
-		this.formModificar.value.provincia = this.provincia
-		this.formModificar.value.ciudad = this.ciudad
+		this.formModificar.value.provincia = this.provinciaE
+		this.formModificar.value.ciudad = this.ciudadE
 		if(this.formModificar.value.provincia != '' ){
 			this.decidirRegistro()
-			console.log('se puede registrar')
 		}else{
 			console.log('no se puede registrar')
 		}
-		console.log(this.formModificar.value)
+		
 	}
 	decidirRegistro(){
 
 		if(this.registrarUsuario == 'alumno'){
 			this.usuario = new Usuario(this.formModificar.value)
-			this.apiService.postUsuario(this.usuario).then((res) => {
+			this.apiService.modificarUsuario(this.datos.id, this.usuario).then((res) => {
 				const response = res.json()
-				console.log(response)
+
 			})
-			console.log('registrar alumno')
 		}else{
 			this.usuarioProfesor = new UsuarioProfesor(this.formModificar.value)
-			this.apiService.postUsuarioProfesor(this.usuarioProfesor).then((res) => {
+			this.apiService.modificarUsuarioProfesor(this.usuarioProfesor).then((res) => {
 				const response = res.json()
 				console.log(response)
 			})
-			console.log('registrar profesor')
 		}
 	}
 	validarPassword(group: FormGroup){
@@ -126,10 +124,11 @@ export class PerfilComponent implements OnInit {
 		}
 	}
 	handleEnvioProv(provRecibida){
-		this.provincia = provRecibida
+		console.log(provRecibida)
+		this.provinciaE = provRecibida
 	}
 	handleEnvioMun(munRecibido){
-		this.ciudad = munRecibido
+		this.ciudadE = munRecibido
 	}
 	handleClickRegistro($event){
 		this.registrarUsuario = $event.currentTarget.id;
