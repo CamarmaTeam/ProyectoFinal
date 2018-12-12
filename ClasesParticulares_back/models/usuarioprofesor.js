@@ -9,7 +9,7 @@ exports.insert = ({nombre, apellidos, foto, ciudad, provincia, contrasena, email
 }
 
 exports.modifyById = (idUser, {nombre, apellidos, foto, ciudad, provincia, contrasena, email, telefono, biografia}, done) => {
-	db.get().query('UPDATE usuarioprofesor SET nombre=?, apellidos=?, foto=?, ciudad=?, provincia=?, contrasena=?, email=?, telefono=?, biografia=? where id=?', [nombre, apellidos, foto, ciudad, provincia, contrasena, email, telefono, biografia, idUser], (err, result) => {
+	db.get().query('UPDATE usuarioprofesor SET nombre=?, apellidos=?, foto=?, ciudad=?, provincia=?, contrasena=?, email=?, telefono=?, biografia=? where id=?', [nombre, apellidos, foto, ciudad, provincia, SHA256(contrasena).toString(), email, telefono, biografia, idUser], (err, result) => {
 		if(err) return done(err, null)
 		done(null, result)
 	})

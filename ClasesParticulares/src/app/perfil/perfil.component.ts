@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import Pselect from 'pselect.js';
 import { ApiService } from '../api.service';
+import { LoginService } from '../login.service';
 import { Usuario } from '../models/usuario.model';
 import { UsuarioProfesor } from '../models/usuarioProfesor.model';
 
@@ -27,7 +28,7 @@ export class PerfilComponent implements OnInit {
 	registrarUsuario: string;
 
 	formModificar: FormGroup;
-	constructor(private apiService: ApiService) {
+	constructor(private apiService: ApiService, private loginService: LoginService) {
 		this.formModificar = new FormGroup({
 			nombre: new FormControl('',[
 				Validators.required,
@@ -68,7 +69,13 @@ export class PerfilComponent implements OnInit {
 		this.hide = true;
 		this.provinciaR = '';
 		this.ciudadR = '';
-		this.registrarUsuario = 'alumno';
+
+		if (this.loginService.isProfesor() === true) {
+			this.registrarUsuario = 'profesor';
+		} else {
+			this.registrarUsuario = 'alumno';
+		}
+		
 	}
 	ngOnInit() {
 
@@ -89,6 +96,7 @@ export class PerfilComponent implements OnInit {
 		})
 	}
 	envioRegistro(){
+
 		this.formModificar.value.provincia = this.provinciaE
 		this.formModificar.value.ciudad = this.ciudadE
 		if(this.formModificar.value.provincia != '' ){
@@ -108,9 +116,8 @@ export class PerfilComponent implements OnInit {
 			})
 		}else{
 			this.usuarioProfesor = new UsuarioProfesor(this.formModificar.value)
-			this.apiService.modificarUsuarioProfesor(this.usuarioProfesor).then((res) => {
+			this.apiService.modificarUsuarioProfesor(this.datos.id, this.usuarioProfesor).then((res) => {
 				const response = res.json()
-				console.log(response)
 			})
 		}
 	}
@@ -124,7 +131,6 @@ export class PerfilComponent implements OnInit {
 		}
 	}
 	handleEnvioProv(provRecibida){
-		console.log(provRecibida)
 		this.provinciaE = provRecibida
 	}
 	handleEnvioMun(munRecibido){

@@ -53,6 +53,9 @@ export class PSelectComponent implements OnInit {
 					provText: this.provinciaBD,
 					munText: this.ciudadBD
 				}).create(this.prov.nativeElement, this.muni.nativeElement);
+
+				this.envioProv.emit(this.prov.nativeElement.selectedOptions[0].label)
+				this.envioMun.emit(this.muni.nativeElement.selectedOptions[0].label)
 			}
 		}
 	}

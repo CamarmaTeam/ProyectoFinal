@@ -18,6 +18,7 @@ router.post('/', (req, res) => {
 
 router.post('/modificar/:idUser', (req, res) => {
 	usuarioprofesorModel.modifyById(req.params.idUser, req.body, (err, result) => {
+		console.log(req.body)
 		if (err) return res.json ({ error: err.message})
 		res.json(result)
 	})

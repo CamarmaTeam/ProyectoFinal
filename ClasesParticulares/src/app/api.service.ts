@@ -36,8 +36,9 @@ export class ApiService {
 		return this.http.post(`${this.baseUrl}/usuarios/modificar/${id}`, values).toPromise()
 	}
 	//Modificar PROFESOR
-	modificarUsuarioProfesor(values){
-		return this.http.post(`${this.baseUrl}/usuariosProfesor/modificar/`, values).toPromise()
+	modificarUsuarioProfesor(idUser, values){
+		let id = idUser
+		return this.http.post(`${this.baseUrl}/usuariosprofesor/modificar/${id}`, values).toPromise()
 	}
 	//Iniciar sesión USUARIO
 	postLoginUsuario(values){
@@ -45,15 +46,17 @@ export class ApiService {
 	}
 	//Iniciar sesión PROFESOR
 	postLoginProfesor(values){
-		return this.http.post(`${this.baseUrl}/usuariosProfesor/login`, values).toPromise()
+		return this.http.post(`${this.baseUrl}/usuariosprofesor/login`, values).toPromise()
 	}
 
 	//Datos del Usuario
 	datosPerfil(){
 		this.token = localStorage.getItem('token')
 		if(this.loginService.isProfesor() === false) {
+			
 			return this.http.get(`${this.baseUrl}/usuarios/token/${this.token}`).toPromise()
 		}else {
+			
 			return this.http.get(`${this.baseUrl}/usuariosprofesor/token/${this.token}`).toPromise()
 		}
 	}
