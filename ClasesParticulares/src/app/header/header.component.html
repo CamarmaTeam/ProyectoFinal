@@ -6,7 +6,7 @@
 		<a class="navbar-brand m-0 p-2 border-right" [routerLink]="['/login']">Identifícate</a>
 		<a class="navbar-brand m-0 p-2 border-left" [routerLink]="['/signin']">Regístrate</a>
 	</div>
-	<button *ngIf="this.loginService.isProfesor()" class="ui inverted secondary button"><i class="pencil alternate icon"></i>Añadir clase</button>
+	<button *ngIf="this.loginService.isProfesor()" [routerLink]="['/nuevaclase']" class="ui inverted secondary button"><i class="pencil alternate icon"></i>Añadir clase</button>
 	<div *ngIf="this.loginService.isLogin()" class="ui dropdown">
 		
 		<div class="ui top right pointing dropdown " [matMenuTriggerFor]="menu">
@@ -21,7 +21,7 @@
 					<i class="user icon"></i>
 					Mi cuenta
 				</div>
-				<div *ngIf="this.loginService.isProfesor()" class="item" mat-menu-item>
+				<div *ngIf="this.loginService.isProfesor()" [routerLink]="['/clases']"class="item" mat-menu-item>
 					<i class="book icon"></i>
 					Mis clases
 				</div>

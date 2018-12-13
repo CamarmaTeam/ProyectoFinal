@@ -7,10 +7,10 @@ export class Clase{
 	foto: string;
 	ciudad: string;
 	provincia: string;	
-	claseIn: boolean;
-	claseOut: boolean;
-	claseCiudad: boolean;
-	claseFueraCiudad: boolean;
+	clasein: boolean;
+	claseout: boolean;
+	claseciudad: boolean;
+	clasefueraciudad: boolean;
 
 	constructor(values) {
 
@@ -22,10 +22,10 @@ export class Clase{
 		this.foto = values.foto
 		this.ciudad = values.ciudad
 		this.provincia = values.provincia		
-		this.claseIn = values.claseIn
-		this.claseOut = values.claseOut
-		this.claseCiudad = values.claseCiudad
-		this.claseFueraCiudad = values.claseFueraCiudad
+		this.clasein = values.clasein
+		this.claseout = values.claseout
+		this.claseciudad = values.claseciudad
+		this.clasefueraciudad = values.clasefueraciudad
 	}
 }
 

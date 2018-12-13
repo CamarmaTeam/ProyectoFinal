@@ -14,14 +14,26 @@ export class ApiService {
 	constructor(private http: Http, private loginService: LoginService) { 
 		this.token = ''
 	}
+
 	// Obtener TODAS las CLASES
 	getClases(){
 		return this.http.get(`${this.baseUrl}/clases`).toPromise()
 	}
+	//Obtener clase de usuario
+	getClasesByUsuario(fkusuarioprofesor){
+		// this.token = localStorage.getItem('token')
+		return this.http.get(`${this.baseUrl}/clases/${fkusuarioprofesor}`).toPromise()
+	}
 	//Añadir clase 
 	postClaseNueva(values){
 		return this.http.post(`${this.baseUrl}/clases`, values).toPromise()
+	}
+	//Eliminar clase
+	getEliminarClase(id){
+		return this.http.get(`${this.baseUrl}/clases/delete/${id}`).toPromise()
 	}	
+
+	
 	//Registrar USUARIO
 	postUsuario(values){
 		return this.http.post(`${this.baseUrl}/usuarios`, values).toPromise()

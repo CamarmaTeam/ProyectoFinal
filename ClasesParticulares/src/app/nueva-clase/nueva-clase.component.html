@@ -16,11 +16,11 @@
 			<input matInput placeholder="Nivel" formControlName="nivel">
 		</mat-form-field>
 		<p>¿Dónde vas a impartir tus clases?</p>
-		<mat-checkbox class=" p-1" color="primary" formControlName="claseIn" value="claseIn">En mi casa</mat-checkbox>
-		<mat-checkbox class="col-12 p-1" color="primary" (click)="mostrarDistancia()" formControlName="claseOut" value="claseOut">Casas del alumno</mat-checkbox>
+		<mat-checkbox class=" p-1" color="primary" formControlName="clasein" value="clasein">En mi casa</mat-checkbox>
+		<mat-checkbox class="col-12 p-1" color="primary" (click)="mostrarDistancia()" formControlName="claseout" value="claseout">Casas del alumno</mat-checkbox>
 		<p *ngIf="mostrar">Hasta dónde está dispuesto a trasladarse para dar la clase?</p>
-		<mat-checkbox *ngIf="mostrar" class="col-12 p-1" color="primary" formControlName="claseCiudad" value="ciudad">Mi ciudad</mat-checkbox>
-		<mat-checkbox *ngIf="mostrar" class="col-12 p-1" color="primary" formControlName="claseFueraCiudad" value="fueraciudad">Fuera de mi ciudad</mat-checkbox>
+		<mat-checkbox *ngIf="mostrar" class="col-12 p-1" color="primary" formControlName="claseciudad" value="claseciudad">Mi ciudad</mat-checkbox>
+		<mat-checkbox *ngIf="mostrar" class="col-12 p-1" color="primary" formControlName="clasefueraciudad" value="clasefueraciudad">Fuera de mi ciudad</mat-checkbox>
 		<button class="ui inverted red button">Añadir clase</button>
 	</form>
 	</div>

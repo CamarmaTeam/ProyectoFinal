@@ -13,30 +13,51 @@ export class NuevaClaseComponent implements OnInit {
 
 	mostrar: boolean;
 	clase: Clase;
+	datosClase: any;
 
 	formClase: FormGroup;
 	constructor(private apiService: ApiService) {
 		this.formClase = new FormGroup({
+			fk_usuarioprofesor: new FormControl(''),
 			nombreclase: new FormControl(''),
 			rama: new FormControl(''),
 			descripcion: new FormControl(''),
 			nivel: new FormControl(''),
-			claseIn: new FormControl(''),
-			claseOut: new FormControl(''),
-			claseCiudad: new FormControl(''),
-			claseFueraCiudad: new FormControl('')
+			foto: new FormControl(''),
+			ciudad: new FormControl(''),
+			provincia: new FormControl(''),
+			clasein: new FormControl(''),
+			claseout: new FormControl(''),
+			claseciudad: new FormControl(''),
+			clasefueraciudad: new FormControl('')
 		})
 		this.mostrar = false
 	}
 
 	ngOnInit() {
 		this.apiService.datosPerfil().then((res) => {
+			let response = res.json()
+			this.datosClase = response[0]
+			
+			this.formClase.controls.fk_usuarioprofesor.setValue(this.datosClase.id)
+			this.formClase.controls.foto.setValue(this.datosClase.foto)
+			this.formClase.controls.ciudad.setValue(this.datosClase.ciudad)
+			this.formClase.controls.provincia.setValue(this.datosClase.provincia)
+			this.formClase.controls.clasein.setValue(false)
+			this.formClase.controls.claseout.setValue(false)
+			this.formClase.controls.claseciudad.setValue(false)
+			this.formClase.controls.clasefueraciudad.setValue(false)
 			console.log(res.json())
+		})
+		this.apiService.datosPerfil().then((res) => {
+			const response = res.json()
+			
 		})
 	}
 
 	nuevaClase(){
-		this.clase = new Clase(this.formClase)
+		console.log(this.formClase.value)
+		this.clase = new Clase(this.formClase.value)
 		this.apiService.postClaseNueva(this.clase).then((res) => {
 			console.log(res.json())
 		})

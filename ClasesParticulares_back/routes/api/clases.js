@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
 // GET http://localhost:3000/api/clases/idprofesor
 router.get ('/:fkusuarioprofesor', (req, res) => {
 	claseModel.getByFkUsuarioProfesor(req.params.fkusuarioprofesor, (err, rows) => {
+		console.log(req.params.fkusuarioprofesor)
 		if (err) return res.json ({error: err.message})
 			res.json(rows)
 	})
@@ -26,7 +27,7 @@ router.get ('/delete/:idClase', (req, res) => {
 			res.json(rows)
 	})
 })
-
+// GET http://localhost:3000/api/clases/filtro/
 
 // POST http://localhost:3000/api/clases/
 

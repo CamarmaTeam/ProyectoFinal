@@ -29,10 +29,11 @@
            </div>
          </div>
          <div class=" text-center text-md-right text-xl-right col-12 col-md-6 col-xl-4">
+          <button (click)="handleEliminar(clase.id)" class="ui inverted red button">Eliminar</button>
            <i class="red big share square link icon"></i>
-           <i *ngIf="claseOut()" class="red big car icon"></i>
-           <i *ngIf="claseIn()" class="red big building icon"></i>
-           <i *ngIf="pagoOnline()" class="red big cc paypal volume icon"></i>
+           <i *ngIf="clase.claseout" class="red big car icon"></i>
+           <i *ngIf="clase.clasein" class="red big building icon"></i>
+           <!-- <i *ngIf="pagoOnline()" class="red big cc paypal volume icon"></i> -->
          </div>
        </div>
      </mat-card-actions>
@@ -41,13 +42,3 @@
 </div>
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-

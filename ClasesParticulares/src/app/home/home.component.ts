@@ -36,5 +36,5 @@ export class HomeComponent implements OnInit {
   }
 
 }
-
 export class CardFancyExample {}
+
