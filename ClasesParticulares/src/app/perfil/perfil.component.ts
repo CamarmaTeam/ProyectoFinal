@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import Pselect from 'pselect.js';
 import { ApiService } from '../api.service';
@@ -13,6 +13,9 @@ import { UsuarioProfesor } from '../models/usuarioProfesor.model';
 	styleUrls: ['./perfil.component.scss']
 })
 export class PerfilComponent implements OnInit {
+	@ViewChild('provincia') prov: any
+	@ViewChild('municipio') muni: any
+
 
 	usuario: Usuario;
 	usuarioProfesor: UsuarioProfesor;
@@ -21,10 +24,8 @@ export class PerfilComponent implements OnInit {
 
 	checked: boolean;	
 	hide: boolean;
-	provinciaR: string;
-	provinciaE: string;
-	ciudadR: string;
-	ciudadE: string;
+	provincia: string;
+	ciudad: string;
 	registrarUsuario: string;
 
 	formModificar: FormGroup;
@@ -67,8 +68,8 @@ export class PerfilComponent implements OnInit {
 
 		this.checked = false;
 		this.hide = true;
-		this.provinciaR = '';
-		this.ciudadR = '';
+		this.provincia = '';
+		this.ciudad = '';
 
 		if (this.loginService.isProfesor() === true) {
 			this.registrarUsuario = 'profesor';
@@ -78,10 +79,12 @@ export class PerfilComponent implements OnInit {
 		
 	}
 	ngOnInit() {
-
+		
 		this.apiService.datosPerfil().then((res) => {
 			const response = res.json()
 			this.datos = response[0]
+			console.log(this.datos.provincia)
+			console.log(this.datos.ciudad)
 			
 			this.formModificar.controls.nombre.setValue(this.datos.nombre)
 			this.formModificar.controls.apellidos.setValue(this.datos.apellidos)
@@ -91,14 +94,17 @@ export class PerfilComponent implements OnInit {
 			this.formModificar.controls.telefono.setValue(this.datos.telefono)
 			this.formModificar.controls.foto.setValue(this.datos.foto)
 			this.formModificar.controls.biografia.setValue(this.datos.biografia)
-			this.provinciaR = this.datos.provincia
-			this.ciudadR = this.datos.ciudad
+			
+			new Pselect().create(this.prov.nativeElement, this.muni.nativeElement)
+			console.log(this.prov.nativeElement)
 		})
+
+		
 	}
 	envioRegistro(){
 
-		this.formModificar.value.provincia = this.provinciaE
-		this.formModificar.value.ciudad = this.ciudadE
+		this.formModificar.value.provincia = this.provincia
+		this.formModificar.value.ciudad = this.ciudad
 		if(this.formModificar.value.provincia != '' ){
 			this.decidirRegistro()
 		}else{
@@ -111,13 +117,12 @@ export class PerfilComponent implements OnInit {
 		if(this.registrarUsuario == 'alumno'){
 			this.usuario = new Usuario(this.formModificar.value)
 			this.apiService.modificarUsuario(this.datos.id, this.usuario).then((res) => {
-				const response = res.json()
-
+				console.log(res.json())
 			})
 		}else{
 			this.usuarioProfesor = new UsuarioProfesor(this.formModificar.value)
 			this.apiService.modificarUsuarioProfesor(this.datos.id, this.usuarioProfesor).then((res) => {
-				const response = res.json()
+				console.log(res.json())
 			})
 		}
 	}
@@ -130,12 +135,24 @@ export class PerfilComponent implements OnInit {
 			return null
 		}
 	}
-	handleEnvioProv(provRecibida){
-		this.provinciaE = provRecibida
-	}
-	handleEnvioMun(munRecibido){
-		this.ciudadE = munRecibido
-	}
+
+	onChangeProv($event){
+        this.provincia = $event.target.selectedOptions[0].label
+        setTimeout(() => {
+            this.ciudad = this.muni.nativeElement.selectedOptions[0].label
+        }, 100)
+    }
+
+    onChangeMun($event){
+        this.ciudad = $event.target.selectedOptions[0].label
+        
+    }
+	// handleEnvioProv(provRecibida){
+	// 	this.provincia = provRecibida
+	// }
+	// handleEnvioMun(munRecibido){
+	// 	this.ciudad = munRecibido
+	// }
 	handleClickRegistro($event){
 		this.registrarUsuario = $event.currentTarget.id;
 		if(this.registrarUsuario == 'profesor'){

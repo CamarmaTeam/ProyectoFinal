@@ -13,7 +13,16 @@
 			<input  matInput placeholder="Email*" formControlName="email">
 			<mat-error>Email inválido</mat-error>
 		</mat-form-field>
-		<app-p-select tipo="perfil" [ciudadBD]="ciudadR" [provinciaBD]="provinciaR" (envioProv)="handleEnvioProv($event)" (envioMun)="handleEnvioMun($event)"></app-p-select>
+		<div class="p-1">
+<select class="color col-12 p-0" placeholder="Seleccione provincia" id="ps-prov" (change)="onChangeProv($event)" #provincia></select>
+<hr>
+</div>
+
+<div class="p-1">
+<select class="color col-12 p-0" placeholder="Seleccione municipio" id="ps-mun" (change)="onChangeMun($event)" #municipio></select>
+<hr>
+</div>
+
 		<mat-form-field class="p-1 col-12" hintLabel="Entre 6 y 20 caracteres,incluir número y letra">
 			<input matInput placeholder="Contraseña*" [type]="hide ? 'password' : 'text'" formControlName="contrasena">
 		</mat-form-field>

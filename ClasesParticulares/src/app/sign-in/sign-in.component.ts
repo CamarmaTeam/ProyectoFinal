@@ -77,7 +77,7 @@ export class SignInComponent implements OnInit {
 		}else{
 			console.log('no se puede registrar')
 		}
-		console.log(this.formRegistro.value)
+		
 	}
 	decidirRegistro(){
 
@@ -86,13 +86,13 @@ export class SignInComponent implements OnInit {
 			this.apiService.postUsuario(this.usuario).then((res) => {
 				console.log(res.json())
 			})
-			console.log('registrar alumno')
+			
 		}else{
 			this.usuarioProfesor = new UsuarioProfesor(this.formRegistro.value)
 			this.apiService.postUsuarioProfesor(this.usuarioProfesor).then((res) => {
 				console.log(res.json())
 			})
-			console.log('registrar profesor')
+			
 		}
 	}
 	validarPassword(group: FormGroup){
