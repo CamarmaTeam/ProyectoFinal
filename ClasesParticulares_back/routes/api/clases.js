@@ -28,7 +28,12 @@ router.get ('/delete/:idClase', (req, res) => {
 	})
 })
 // GET http://localhost:3000/api/clases/filtro/
-
+router.post('/filtro', (req, res) => {
+	claseModel.Filter( req.body, (err, result) => {
+		if (err) return res.json ({error: err.message})
+			res.json(result)
+	})
+})
 // POST http://localhost:3000/api/clases/
 
 router.post('/', (req, res) => {

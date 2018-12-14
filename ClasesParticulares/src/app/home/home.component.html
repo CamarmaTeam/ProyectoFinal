@@ -1,42 +1,62 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 col-md-8" *ngFor="let clase of arrClases">
-      <div class="mx-auto">
-        <mat-card class="example-card mx-auto mt-3 mb-3">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{clase.nombreclase}} en <i class="map marker alternate icon"></i>{{clase.ciudad}}</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-             {{clase.descripcion}}
-           </p>
-         </mat-card-content>
-         <mat-card-actions>
-          <div class="row">
-            <div class="text-center col-12 col-xl-5 mb-2">
-             <button class="ui inverted red button"><i class="red phone square icon"></i> Contactar</button>
-             <button class="ui inverted red button">Ficha Profesor</button>
+    <div class="col-md-4 mr-2 bg-light">
+      <mat-selection-list #filtros>
+        Niveles
+        <mat-list-option color="primary" *ngFor="let nivel of niveles" id="nivel">
+          {{nivel}}
+        </mat-list-option>
+        Ramas
+        <mat-list-option color="primary" (click)="handleChange(filtros)" *ngFor="let rama of ramas" id="rama">
+          {{rama}}
+        </mat-list-option>
+      </mat-selection-list>
+      
+
+      <p>
+        Options selected:{{filtros.selectedOptions.selected.length}} 
+      </p>
+    </div>
+
+    <div class="row col-12 col-md-8">
+      <div  *ngFor="let clase of arrClases">
+        <div class="mx-auto">
+          <mat-card class="example-card bg-light mx-auto mt-3 mb-3">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>{{clase.nombreclase}} en <i class="map marker alternate icon"></i>{{clase.ciudad}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>
+               {{clase.descripcion}}
+             </p>
+           </mat-card-content>
+           <mat-card-actions>
+            <div class="row">
+              <div class="text-center col-12 col-xl-5 mb-2">
+               <button class="ui inverted red button"><i class="red phone square icon"></i> Contactar</button>
+               <button class="ui inverted red button">Ficha Profesor</button>
+             </div>
+             <div class="text-center text-md-left text-xl-right col-12 col-md-6 col-xl-3 mb-2">
+               <div class="ui labeled button" tabindex="0">
+                <div class="ui red button">
+                  <i class="star icon"></i>Puntos
+                </div>
+                <a class="ui basic red left pointing label">
+                 3.5
+               </a>
+             </div>
            </div>
-           <div class="text-center text-md-left text-xl-right col-12 col-md-6 col-xl-3 mb-2">
-             <div class="ui labeled button" tabindex="0">
-              <div class="ui red button">
-                <i class="star icon"></i>Puntos
-              </div>
-              <a class="ui basic red left pointing label">
-               3.5
-             </a>
+           <div class=" text-center text-md-right text-xl-right col-12 col-md-6 col-xl-4">
+             <i class="red big share square link icon"></i>
+             <i *ngIf="clase.claseout" class="red big car icon"></i>
+             <i *ngIf="clase.clasein" class="red big building icon"></i>
+             <!-- <i *ngIf="pagoOnline()" class="red big cc paypal volume icon"></i> -->
            </div>
          </div>
-         <div class=" text-center text-md-right text-xl-right col-12 col-md-6 col-xl-4">
-           <i class="red big share square link icon"></i>
-           <i *ngIf="claseOut()" class="red big car icon"></i>
-           <i *ngIf="claseIn()" class="red big building icon"></i>
-           <i *ngIf="pagoOnline()" class="red big cc paypal volume icon"></i>
-         </div>
-       </div>
-     </mat-card-actions>
-   </mat-card>
+       </mat-card-actions>
+     </mat-card>
+   </div>
  </div>
 </div>
 </div>

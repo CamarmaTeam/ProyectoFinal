@@ -10,9 +10,13 @@ import { Clase } from '../models/clase.model'
 export class HomeComponent implements OnInit {
 
 	arrClases: Clase[]
+  niveles: string[]
+  ramas: string[]
 
   constructor(private apiService: ApiService) { 
   	this.arrClases = []
+    this.niveles = ['bajo', 'medio', 'avanzado']
+    this.ramas = ['deportes', 'idiomas', 'música']
   }
 
   ngOnInit() {
@@ -23,16 +27,8 @@ export class HomeComponent implements OnInit {
   	})
   }
 
-  claseIn(){
-     return false
-  }
-
-  claseOut(){
-     return false
-  }
-
-  pagoOnline(){
-    return true
+  handleChange(filtros){
+    console.log(filtros.selectedOptions.selected)
   }
 
 }

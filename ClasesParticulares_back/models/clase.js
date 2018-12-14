@@ -13,8 +13,8 @@ exports.getByFkUsuarioProfesor = (fk_usuarioprofesor, done) => {
 			done(null, rows)
 	})
 }
-exports.getByFilter = ({nivel, rama}, done) => {
-	db.get().query('SELECT * FROM clases WHERE nivel=? AND rama=?' , [nivel, rama], (err, rows) => {
+exports.Filter = ( {rama='', nivel=''}, done) => {
+	db.get().query('SELECT * FROM clases WHERE rama=? AND nivel=?' , [rama, nivel], (err, rows) => {
 		if(err) return done(err, null)
 			done(null, rows)
 	})
