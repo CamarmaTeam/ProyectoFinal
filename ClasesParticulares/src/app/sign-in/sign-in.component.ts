@@ -4,13 +4,22 @@ import Pselect from 'pselect.js';
 import { ApiService } from '../api.service';
 import { Usuario } from '../models/usuario.model';
 import { UsuarioProfesor } from '../models/usuarioProfesor.model';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { AlertaComponent } from '../alerta/alerta.component';
+import { Router } from '@angular/router';
 
+export interface DialogData {
+	text: string;
+
+}
 
 @Component({
 	selector: 'app-sign-in',
 	templateUrl: './sign-in.component.html',
 	styleUrls: ['./sign-in.component.scss']
 })
+
+
 export class SignInComponent implements OnInit {
 
 	usuario: Usuario;
@@ -23,7 +32,7 @@ export class SignInComponent implements OnInit {
 	registrarUsuario: string;
 
 	formRegistro: FormGroup;
-	constructor(private apiService: ApiService) {
+	constructor(private apiService: ApiService, public dialog: MatDialog,  private router : Router) {
 		this.formRegistro = new FormGroup({
 			nombre: new FormControl('',[
 				Validators.required,
@@ -65,9 +74,13 @@ export class SignInComponent implements OnInit {
 		this.provincia = '';
 		this.ciudad = '';
 		this.registrarUsuario = 'alumno';
+
+
 	}
 	ngOnInit() {
 	}
+
+
 	envioRegistro(){
 		this.formRegistro.value.provincia = this.provincia
 		this.formRegistro.value.ciudad = this.ciudad
@@ -85,14 +98,18 @@ export class SignInComponent implements OnInit {
 			this.usuario = new Usuario(this.formRegistro.value)
 			this.apiService.postUsuario(this.usuario).then((res) => {
 				let respuesta = res.json()
-				console.log(res.json())
+				this.router.navigate(['/login'])
+				this.openDialog()
+				
 			})
 			
 		}else{
 			this.usuarioProfesor = new UsuarioProfesor(this.formRegistro.value)
 			this.apiService.postUsuarioProfesor(this.usuarioProfesor).then((res) => {
 				let respuesta = res.json()
-				console.log(res.json())
+				
+				this.openDialog()
+
 			})
 			
 		}
@@ -121,4 +138,18 @@ export class SignInComponent implements OnInit {
 		}	
 	}
 
+	openDialog(): void {
+		window.scrollTo(0, 0);
+		const dialogRef = this.dialog.open(AlertaComponent, {
+			width: '350px',
+			data: {text: 'El registro se ha realizado correctamente'}
+
+		})
+		this.router.navigate(['/login'])
+
+	}
+
+	
 }
+
+
