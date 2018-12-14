@@ -13,16 +13,8 @@
 			<input  matInput placeholder="Email*" formControlName="email">
 			<mat-error>Email inválido</mat-error>
 		</mat-form-field>
-		<div class="p-1">
-<select class="color col-12 p-0" placeholder="Seleccione provincia" id="ps-prov" (change)="onChangeProv($event)" #provincia></select>
-<hr>
-</div>
-
-<div class="p-1">
-<select class="color col-12 p-0" placeholder="Seleccione municipio" id="ps-mun" (change)="onChangeMun($event)" #municipio></select>
-<hr>
-</div>
-
+		<mat-checkbox (change)="ps = !ps" class="pr-5" color="primary">Cambiar Provicia / Municipio</mat-checkbox>
+		<app-p-select *ngIf="ps" tipo="vacio" (envioProv)="handleEnvioProv($event)" (envioMun)="handleEnvioMun($event)"></app-p-select>
 		<mat-form-field class="p-1 col-12" hintLabel="Entre 6 y 20 caracteres,incluir número y letra">
 			<input matInput placeholder="Contraseña*" [type]="hide ? 'password' : 'text'" formControlName="contrasena">
 		</mat-form-field>
@@ -35,9 +27,6 @@
 			<input matInput placeholder="Teléfono*" formControlName="telefono">
 			<i matSuffix class="phone icon"></i>
 		</mat-form-field>
-		<mat-form-field class="p-1 col-12">
-			<input matInput placeholder="Foto (opcional)" formControlName="foto">
-		</mat-form-field>
 		<mat-form-field  *ngIf="checked" class="p-1 col-12">
 			<textarea matInput placeholder="Biografía (opcional)" formControlName="biografia"></textarea>
 		</mat-form-field>
@@ -46,5 +35,14 @@
 		<p class="colorError">{{mensajeError}}</p>
 		{{mensajeError | json}}
 		</form>
+		<!-- <div class="p-1">
+<select class="color col-12 p-0" placeholder="Seleccione provincia" id="ps-prov" (change)="onChangeProv($event)" #provincia></select>
+<hr>
+</div>
+
+<div class="p-1">
+<select class="color col-12 p-0" placeholder="Seleccione municipio" id="ps-mun" (change)="onChangeMun($event)" #municipio></select>
+<hr>
+</div> -->
 	</div>
 </div>

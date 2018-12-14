@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input, SimpleChange } from '@angular/core';
 import Pselect from 'pselect.js'
+import * as $ from 'jquery'
 
 @Component({
 	selector: 'app-p-select',
@@ -22,6 +23,8 @@ export class PSelectComponent implements OnInit {
 	ngOnInit() {
 		
 			new Pselect().create(this.prov.nativeElement, this.muni.nativeElement)
+
+			
 	}
 
 	

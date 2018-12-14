@@ -5,6 +5,7 @@ import { ApiService } from '../api.service';
 import { LoginService } from '../login.service';
 import { Usuario } from '../models/usuario.model';
 import { UsuarioProfesor } from '../models/usuarioProfesor.model';
+import * as $ from 'jquery'
 
 
 @Component({
@@ -24,6 +25,7 @@ export class PerfilComponent implements OnInit {
 
 	checked: boolean;	
 	hide: boolean;
+	ps: boolean;
 	provincia: string;
 	ciudad: string;
 	registrarUsuario: string;
@@ -68,6 +70,7 @@ export class PerfilComponent implements OnInit {
 
 		this.checked = false;
 		this.hide = true;
+		this.ps = false;
 		this.provincia = '';
 		this.ciudad = '';
 
@@ -83,8 +86,6 @@ export class PerfilComponent implements OnInit {
 		this.apiService.datosPerfil().then((res) => {
 			const response = res.json()
 			this.datos = response[0]
-			console.log(this.datos.provincia)
-			console.log(this.datos.ciudad)
 			
 			this.formModificar.controls.nombre.setValue(this.datos.nombre)
 			this.formModificar.controls.apellidos.setValue(this.datos.apellidos)
@@ -95,9 +96,42 @@ export class PerfilComponent implements OnInit {
 			this.formModificar.controls.foto.setValue(this.datos.foto)
 			this.formModificar.controls.biografia.setValue(this.datos.biografia)
 			
-			new Pselect().create(this.prov.nativeElement, this.muni.nativeElement)
-			console.log(this.prov.nativeElement)
-		})
+			//  new Pselect().create(this.prov.nativeElement, this.muni.nativeElement)
+
+			// $('#ps-prov option:selected').removeAttr('selected')
+
+			// $("#ps-prov option:contains('Madrid')").attr('selected', 'selected')
+			// let selected = $("#ps-prov option:contains('Madrid')")
+			// console.log(selected.attr('value'))
+
+			// console.log($("#ps-prov").val(selected.attr('value')))
+
+			// for (var i = 0; i < ($("#ps-prov")[0].length); i++){
+			// 	if ($("#ps-prov")[0][i].text == this.datos.provincia){
+			// 		let d = $("#ps-prov")[0][0]
+			// 		d.selected = false	
+			// 		console.log($("#ps-prov")[0][i].text)
+			// 		let c = $("#ps-prov")[0][i]
+			// 		c.attr('selected', 'selected')
+
+			// 	}
+			// }
+
+			// console.log($("#ps-mun")[0])
+
+			// for (var j = 0; j < ($("#ps-mun")[0].length); j++){
+			// 	if ($("#ps-mun")[0][i].text == this.datos.ciudad){
+			// 		console.log('entro if')
+				//console.log($("#ps-mun")[0][i].text)
+				//let  = $("#ps-mun")[0][i]
+				//c.selected = true
+			// 	}
+			// }
+
+			
+			
+				
+					})
 
 		
 	}
@@ -161,5 +195,13 @@ export class PerfilComponent implements OnInit {
 			this.checked = false
 		}	
 	}
+
+	handleEnvioProv(provRecibida){
+		this.provincia = provRecibida
+	}
+	handleEnvioMun(munRecibido){
+		this.ciudad = munRecibido
+	}
+	
 
 }

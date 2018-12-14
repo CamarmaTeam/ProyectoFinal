@@ -25,32 +25,32 @@ export class SignInComponent implements OnInit {
 	formRegistro: FormGroup;
 	constructor(private apiService: ApiService) {
 		this.formRegistro = new FormGroup({
-			nombre: new FormControl('sad',[
+			nombre: new FormControl('',[
 				Validators.required,
 				Validators.maxLength(25),
 				Validators.pattern(/(^$)|(^([^\-!#\$%&\(\)\*,\./:;\?@\[\\\]_\{\|\}¨ˇ“”€\+<=>§°\d\s¤®™©]| )+$)/)
 				]),
-			apellidos: new FormControl('asd',[
+			apellidos: new FormControl('',[
 				Validators.required,
 				Validators.maxLength(40),
 				Validators.pattern(/(^$)|(^([^\-!#\$%&\(\)\*,\./:;\?@\[\\\]_\{\|\}¨ˇ“”€\+<=>§°\d\s¤®™©]| )+$)/)
 				]),
-			email: new FormControl('a@es.es', [
+			email: new FormControl('', [
 				Validators.required,
 				Validators.email
 				]),
 			provincia: new FormControl(''),
 			ciudad: new FormControl(''),
-			contrasena: new FormControl('123456a',[
+			contrasena: new FormControl('',[
 				Validators.required,
 				Validators.pattern(/^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$/),
 				Validators.maxLength(20),
 				]),
-			confirmarContrasena: new FormControl('123456a',[
+			confirmarContrasena: new FormControl('',[
 				Validators.required,
 				Validators.minLength(6),
 				]),
-			telefono: new FormControl('123456789',[
+			telefono: new FormControl('',[
 				Validators.required,
 				Validators.minLength(9),
 				Validators.pattern(/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/)
@@ -73,7 +73,7 @@ export class SignInComponent implements OnInit {
 		this.formRegistro.value.ciudad = this.ciudad
 		if(this.formRegistro.value.provincia != '' ){
 			this.decidirRegistro()
-			console.log('se puede registrar')
+			
 		}else{
 			console.log('no se puede registrar')
 		}
@@ -84,12 +84,14 @@ export class SignInComponent implements OnInit {
 		if(this.registrarUsuario == 'alumno'){
 			this.usuario = new Usuario(this.formRegistro.value)
 			this.apiService.postUsuario(this.usuario).then((res) => {
+				let respuesta = res.json()
 				console.log(res.json())
 			})
 			
 		}else{
 			this.usuarioProfesor = new UsuarioProfesor(this.formRegistro.value)
 			this.apiService.postUsuarioProfesor(this.usuarioProfesor).then((res) => {
+				let respuesta = res.json()
 				console.log(res.json())
 			})
 			
