@@ -4,6 +4,11 @@ import { ApiService } from '../api.service';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
 
+export interface DialogData {
+	text: string;
+
+}
+
 @Component({
 	selector: 'app-log-in',
 	templateUrl: './log-in.component.html',
@@ -62,7 +67,7 @@ export class LogInComponent implements OnInit {
 			this.apiService.postLoginProfesor(this.formLogIn.value).then((res) => {
 				localStorage.setItem("token",res.json().token);	
 				this.loginService.isLogin()
-				this.router.navigate(['/perfil'])			
+				this.router.navigate(['/home'])			
 			})	
 		}
 	}
