@@ -1,25 +1,23 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4 mr-2 bg-light">
-      <mat-selection-list #filtros>
-        Niveles
-        <mat-list-option color="primary" *ngFor="let nivel of niveles" id="nivel">
-          {{nivel}}
-        </mat-list-option>
-        Ramas
-        <mat-list-option color="primary" (click)="handleChange(filtros)" *ngFor="let rama of ramas" id="rama">
-          {{rama}}
-        </mat-list-option>
-      </mat-selection-list>
-      
-
-      <p>
-        Options selected:{{filtros.selectedOptions.selected.length}} 
-      </p>
+    <div class="col-3  p-4  mr-2 bg-light">
+      <mat-form-field class="col-12">
+        <mat-select placeholder="Rama" >
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let rama of ramas" (click)="handleRama($event)" [value]="rama">{{rama}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="col-12">
+        <mat-select placeholder="Nivel">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let nivel of niveles" (click)="handleNivel($event)" [value]="nivel">{{nivel}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <app-p-select></app-p-select>
     </div>
 
-    <div class="row col-12 col-md-8">
-      <div  *ngFor="let clase of arrClases">
+    <div class="row col-12 col-md-9">
+      <div  *ngFor="let clase of arrClases" class="col-12">
         <div class="mx-auto">
           <mat-card class="example-card bg-light mx-auto mt-3 mb-3">
             <mat-card-header>
@@ -34,7 +32,7 @@
            <mat-card-actions>
             <div class="row">
               <div class="text-center col-12 col-xl-5 mb-2">
-               <button class="ui inverted red button"><i class="red phone square icon"></i> Contactar</button>
+               <button (click)="contacto()" class="ui inverted red button"><i class="red phone square icon"></i> Contactar</button>
                <button class="ui inverted red button">Ficha Profesor</button>
              </div>
              <div class="text-center text-md-left text-xl-right col-12 col-md-6 col-xl-3 mb-2">

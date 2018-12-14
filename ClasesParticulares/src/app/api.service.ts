@@ -31,7 +31,11 @@ export class ApiService {
 	//Eliminar clase
 	getEliminarClase(id){
 		return this.http.get(`${this.baseUrl}/clases/delete/${id}`).toPromise()
-	}	
+	}
+	//Filtrar clases
+	posClaseByFilter(values){
+		return this.http.post(`${this.baseUrl}/clases/filtro`, values).toPromise()
+	}
 
 	
 	//Registrar USUARIO
