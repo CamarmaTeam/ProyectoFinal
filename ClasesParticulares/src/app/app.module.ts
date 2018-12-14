@@ -20,15 +20,25 @@ import { NuevaClaseComponent } from './nueva-clase/nueva-clase.component';
 import { ClaseComponent } from './clase/clase.component';
 import { AlertaComponent } from './alerta/alerta.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { EliminarComponent } from './eliminar/eliminar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent, 
-    FooterComponent, LogInComponent, SignInComponent, PSelectComponent, PerfilComponent, NuevaClaseComponent, ClaseComponent, AlertaComponent, ContactoComponent
+    FooterComponent, 
+    LogInComponent, 
+    SignInComponent, 
+    PSelectComponent, 
+    PerfilComponent, 
+    NuevaClaseComponent, 
+    ClaseComponent, 
+    AlertaComponent, 
+    ContactoComponent, 
+    EliminarComponent
   ],
-  entryComponents: [ AlertaComponent, ContactoComponent],
+  entryComponents: [ AlertaComponent, ContactoComponent, EliminarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Clase } from '../models/clase.model';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { EliminarComponent } from '../eliminar/eliminar.component';
+import { Router } from '@angular/router';
 
+export interface DialogData {
+  text: string;
+  id: number;
+  delete: any;
+}
 
 @Component({
 	selector: 'app-clase',
@@ -12,8 +20,9 @@ export class ClaseComponent implements OnInit {
 
 	arrClases: Clase[]
 	fkusuarioprofesor: number;
+	ClaseEliminar: number;
 
-	constructor(private apiService: ApiService) {
+	constructor(private apiService: ApiService, public dialog: MatDialog,  private router : Router ) {
 		this.arrClases = [];
 	}
 
@@ -33,7 +42,7 @@ export class ClaseComponent implements OnInit {
 		
 	}
 
-	handleEliminar(claseId){
+	eliminar(claseId){
 		this.apiService.getEliminarClase(claseId).then((res) => {
 			console.log(res.json())
 			this.apiService.getClasesByUsuario(this.fkusuarioprofesor).then((res) => {
@@ -42,6 +51,30 @@ export class ClaseComponent implements OnInit {
 			})
 		}) 
 	}
+
+	handleEliminar(claseId){
+		this.ClaseEliminar = claseId
+		this.openDialog()
+		
+
+	}
+
+	openDialog(): void {
+	let id = this.ClaseEliminar
+    window.scrollTo(0, 0);
+    const dialogRef = this.dialog.open(EliminarComponent, {
+      width: '350px',
+      data: {
+      	text: '¿Seguro que quiere eliminar la Clase?', 
+      	id:`${id}`,
+      	delete: ()=>{
+      		this.eliminar(id)
+      	}
+      	
+      }
+
+    })
+}
 	
 
 
