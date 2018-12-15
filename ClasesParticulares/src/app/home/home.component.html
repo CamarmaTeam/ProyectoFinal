@@ -1,19 +1,28 @@
 <div class="container">
   <div class="row">
-    <div class="col-3  p-4  mr-2 bg-light">
-      <mat-form-field class="col-12">
-        <mat-select placeholder="Rama" >
-          <mat-option>None</mat-option>
-          <mat-option *ngFor="let rama of ramas" (click)="handleRama($event)" [value]="rama">{{rama}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="col-12">
-        <mat-select placeholder="Nivel">
-          <mat-option>None</mat-option>
-          <mat-option *ngFor="let nivel of niveles" (click)="handleNivel($event)" [value]="nivel">{{nivel}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <app-p-select></app-p-select>
+    <div class="col-3  p-4  mr-2 bg-light text-left">
+      <h3 class="pb-3 mb-3 border-bottom border-secondary">Filtros</h3>
+      <div class="col-12 p-1 pb-2 mb-3 border-bottom border-secondary">
+        <select class=" col-12 p-0 " (click)="handleRama($event)" id="rama" placeholder="Rama" >
+          <option >todas</option>
+          <option *ngFor="let rama of ramas"  [value]="rama">{{rama}}</option>
+        </select>
+      </div>
+      
+      <div class="col-12 p-1 pb-2 mb-3 border-bottom border-secondary">
+        <select class="col-12 p-0" placeholder="Nivel" (click)="handleNivel($event)" id="nivel" [disabled]="disabled">
+          <option>todos</option>
+          <option *ngFor="let nivel of niveles" [value]="nivel">{{nivel}}</option>
+        </select>
+      </div>
+      <div class="p-1 pb-2 mb-3 border-bottom border-secondary">
+        <select class=" col-12 p-0" placeholder="Seleccione provincia" id="ps-prov" (change)="handleProv($event)" #provincia [disabled]="disabled"></select>
+      </div>
+
+      <div class="p-1 pb-2 mb-3 border-bottom border-secondary">
+        <select class=" col-12 p-0" placeholder="Seleccione municipio" id="ps-mun" (change)="handleMun($event)" #municipio [disabled]="disabled"></select>
+      </div>
+      <button (click)="handleReset()" [routerLink]="['/home']">reset</button>
     </div>
 
     <div class="row col-12 col-md-9">
@@ -47,8 +56,8 @@
            </div>
            <div class=" text-center text-md-right text-xl-right col-12 col-md-6 col-xl-4">
              <i class="red big share square link icon"></i>
-             <i *ngIf="clase.claseout" class="red big car icon"></i>
-             <i *ngIf="clase.clasein" class="red big building icon"></i>
+             <i *ngIf="clase.claseout" class="big car icon"></i>
+             <i *ngIf="clase.clasein" class="big building icon"></i>
              <!-- <i *ngIf="pagoOnline()" class="red big cc paypal volume icon"></i> -->
            </div>
          </div>

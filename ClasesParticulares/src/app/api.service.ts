@@ -33,7 +33,7 @@ export class ApiService {
 		return this.http.get(`${this.baseUrl}/clases/delete/${id}`).toPromise()
 	}
 	//Filtrar clases
-	posClaseByFilter(values){
+	postClaseByFilter(values){
 		return this.http.post(`${this.baseUrl}/clases/filtro`, values).toPromise()
 	}
 

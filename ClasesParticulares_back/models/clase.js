@@ -13,9 +13,30 @@ exports.getByFkUsuarioProfesor = (fk_usuarioprofesor, done) => {
 			done(null, rows)
 	})
 }
-exports.Filter = ( {rama, nivel="",}, done) => {
-	if(nivel != ""){
-		db.get().query('SELECT * FROM clases WHERE rama=? AND nivel=? ' , [rama, nivel], (err, rows) => {
+exports.Filter = ( {rama, nivel="",provincia="",ciudad=""}, done) => {
+	//Caso TODOS LOS FILTROS
+	if(nivel != "" && provincia!="" && ciudad!=""){
+		db.get().query('SELECT * FROM clases WHERE rama=? AND nivel=? AND provincia=? AND ciudad=?' , [rama, nivel, provincia, ciudad], (err, rows) => {
+			if(err) return done(err, null)
+				done(null, rows)
+		})  //Caso RAMA, NIVEL  y PROVINCIA
+	}else if(nivel != "" && provincia!="" && ciudad==""){
+		db.get().query('SELECT * FROM clases WHERE rama=? AND nivel=? AND provincia=? ' , [rama, nivel, provincia], (err, rows) => {
+			if(err) return done(err, null)
+				done(null, rows)
+		})  //Caso RAMA, PROVINCIA Y CIUDAD
+	}else if(nivel =="" && provincia!="" && ciudad!=""){
+		db.get().query('SELECT * FROM clases WHERE rama=? AND provincia=? AND ciudad=?' , [rama, provincia, ciudad], (err, rows) => {
+			if(err) return done(err, null)
+				done(null, rows)
+		})	//Caso RAMA Y NIVEL
+	}else if(nivel !="" && provincia=="" && ciudad==""){
+		db.get().query('SELECT * FROM clases WHERE rama=? AND nivel=?' , [rama, nivel], (err, rows) => {
+			if(err) return done(err, null)
+				done(null, rows)
+		}) //Caso RAMA Y PROVINCIA
+	}else if(nivel =="" && provincia!="" && ciudad==""){
+		db.get().query('SELECT * FROM clases WHERE rama=? AND provincia=?' , [rama, provincia], (err, rows) => {
 			if(err) return done(err, null)
 				done(null, rows)
 		})
@@ -25,8 +46,6 @@ exports.Filter = ( {rama, nivel="",}, done) => {
 				done(null, rows)
 		})
 	}
-
-	
 }
 
 exports.insert = ({fk_usuarioprofesor, nombreclase, rama, descripcion, nivel, foto, ciudad, provincia, clasein, claseout, claseciudad, clasefueraciudad }, done) => {

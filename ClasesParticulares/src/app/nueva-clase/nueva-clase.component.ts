@@ -21,6 +21,8 @@ export class NuevaClaseComponent implements OnInit {
 	mostrar: boolean;
 	clase: Clase;
 	datosClase: any;
+	ramas: string[];
+	niveles: string[];
 
 	formClase: FormGroup;
 	constructor(private apiService: ApiService, public dialog: MatDialog,  private router : Router) {
@@ -39,6 +41,8 @@ export class NuevaClaseComponent implements OnInit {
 			clasefueraciudad: new FormControl('')
 		})
 		this.mostrar = false
+		this.ramas = ['deportes', 'idiomas', 'musica']
+		this.niveles = ['bajo', 'medio', 'avanzado']
 	}
 
 	ngOnInit() {
@@ -82,7 +86,9 @@ export class NuevaClaseComponent implements OnInit {
 
 		})
 		this.router.navigate(['/clases'])
-
+	}
+	handleRama($event){
+		console.log(this.formClase.controls.rama)
 	}
 
 }

@@ -6,14 +6,24 @@
 		<mat-form-field class="p-1 col-12">
 			<input matInput placeholder="Títuo de la clase" formControlName="nombreclase">
 		</mat-form-field>
-		<mat-form-field class="p-1 col-12">
+		<!-- <mat-form-field class="p-1 col-12">
 			<input matInput placeholder="Rama" formControlName="rama">
+		</mat-form-field> -->
+		<mat-form-field class="col-12">
+			<mat-select placeholder="Rama" formControlName="rama">
+				<mat-option *ngFor="let rama of ramas"  [value]="rama" >{{rama}}</mat-option>
+			</mat-select>
 		</mat-form-field>
 		<mat-form-field class="p-1 col-12">
 			<textarea matInput placeholder="Descripción" formControlName="descripcion"></textarea>
 		</mat-form-field>
-		<mat-form-field class="p-1 col-12">
+		<!-- <mat-form-field class="p-1 col-12">
 			<input matInput placeholder="Nivel" formControlName="nivel">
+		</mat-form-field> -->
+		<mat-form-field class="col-12">
+			<mat-select placeholder="Nivel"  formControlName="nivel">
+				<mat-option *ngFor="let nivel of niveles"  [value]="nivel">{{nivel}}</mat-option>
+			</mat-select>
 		</mat-form-field>
 		<p>¿Dónde vas a impartir tus clases?</p>
 		<mat-checkbox class=" p-1" color="primary" formControlName="clasein" value="clasein">En mi casa</mat-checkbox>
@@ -23,6 +33,6 @@
 		<mat-checkbox *ngIf="mostrar" class="col-12 p-1" color="primary" formControlName="clasefueraciudad" value="clasefueraciudad">Fuera de mi ciudad</mat-checkbox>
 		<button class="ui inverted red button">Añadir clase</button>
 	</form>
-	</div>
+</div>
 </div>
 
