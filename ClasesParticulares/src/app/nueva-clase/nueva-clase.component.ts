@@ -41,8 +41,8 @@ export class NuevaClaseComponent implements OnInit {
 			clasefueraciudad: new FormControl('')
 		})
 		this.mostrar = false
-		this.ramas = ['deportes', 'idiomas', 'musica']
-		this.niveles = ['bajo', 'medio', 'avanzado']
+		this.ramas = ['Deportes', 'Idiomas', 'Teatro']
+		this.niveles = ['Bajo', 'Medio', 'Alto']
 	}
 
 	ngOnInit() {
@@ -67,6 +67,8 @@ export class NuevaClaseComponent implements OnInit {
 	}
 
 	nuevaClase(){
+		this.formClase.controls.rama.value.toLowerCase()
+		this.formClase.controls.nivel.value.toLowerCase()
 		console.log(this.formClase.value)
 		this.clase = new Clase(this.formClase.value)
 		this.apiService.postClaseNueva(this.clase).then((res) => {

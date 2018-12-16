@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row colorfondo">
     <div class="col-12 col-md-9 mx-auto" *ngFor="let clase of arrClases">
       <div class="mx-auto">
         <mat-card class="example-card mx-auto bg-light mt-3 mb-3">
@@ -14,25 +14,24 @@
          </mat-card-content>
          <mat-card-actions>
           <div class="row">
-            <div class="text-center col-12 col-xl-5 mb-2">
-             <button class="ui inverted red button"><i class="red phone square icon"></i> Contactar</button>
-             <button class="ui inverted red button">Ficha Profesor</button>
-           </div>
-           <div class="text-center text-md-left text-xl-right col-12 col-md-6 col-xl-3 mb-2">
+           <div class="text-center text-md-left  col-12 col-md-6 col-xl-4 mb-2">
              <div class="ui labeled button" tabindex="0">
-              <div class="ui red button">
-                <i class="star icon"></i>Puntos
+              <div class="ui  button colorpuntos">
+                <i class="star icon colorestrella"></i>Puntos
               </div>
-              <a class="ui basic red left pointing label">
+              <a class="ui basic coloriconos left pointing label">
                3.5
              </a>
            </div>
          </div>
-         <div class=" text-center text-md-right text-xl-right col-12 col-md-6 col-xl-4">
-          <button (click)="handleEliminar(clase.id)" class="ui inverted red button">Eliminar</button>
-           <i class="red big share square link icon"></i>
-           <i *ngIf="clase.claseout" class="red big car icon"></i>
-           <i *ngIf="clase.clasein" class="red big building icon"></i>
+         <div class="col-4">
+         <button (click)="handleEliminar(clase.id)" class="ui inverted secondary button fluid">Eliminar</button>
+         </div>
+         <div class=" text-right text-md-right text-xl-right col-12 col-md-6 col-xl-4">
+          
+           <i class="coloriconos big share square link icon"></i>
+           <i *ngIf="clase.claseout" class=" big car icon coloriconos"></i>
+           <i *ngIf="clase.clasein" class=" big building icon coloriconos"></i>
            <!-- <i *ngIf="pagoOnline()" class="red big cc paypal volume icon"></i> -->
          </div>
        </div>

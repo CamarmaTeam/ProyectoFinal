@@ -39,8 +39,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private loginService: LoginService, private apiService: ApiService,  public dialog: MatDialog,  private router : Router) { 
   	this.arrClases = []
-    this.niveles = ['bajo', 'medio', 'avanzado']
-    this.ramas = ['deportes', 'idiomas', 'musica']
+    this.niveles = ['Bajo', 'Medio', 'Alto']
+    this.ramas = ['Deportes', 'Idiomas', 'Teatro']
     this.disabled = true
 
     this.objetoFiltros = {
@@ -105,13 +105,14 @@ export class HomeComponent implements OnInit {
     })
   }
   handleRama($event){
-    if($event.target.value !="todas"){
-      this.objetoFiltros.rama = $event.target.value
+    let value =  $event.target.value.toLowerCase()
+    if(value !="todas"){
+      this.objetoFiltros.rama = value
       this.filtrarClases()
       this.disabled = false
       console.log(this.objetoFiltros)
     }else{
-      $('#nivel')[0].value = 'todos'
+      $('#nivel')[0].value = 'Todos'
       this.objetoVacio()
       this.apiService.getClases().then((res) => {
         this.arrClases = res.json()
@@ -123,9 +124,9 @@ export class HomeComponent implements OnInit {
     
   }
   handleNivel($event){
-   
-    if($event.target.value != 'todos'){
-      this.objetoFiltros.nivel = $event.target.value
+    let  value = $event.target.value.toLowerCase()
+    if(value != 'todos'){
+      this.objetoFiltros.nivel = value
       this.filtrarClases()
       console.log(this.objetoFiltros)
     }else{
@@ -142,12 +143,12 @@ export class HomeComponent implements OnInit {
       setTimeout(() => {
         $('#ps-mun')[0].selectedOptions[0].label = 'Municipio'
       },5)
-            console.log($('#ps-prov')[0].selectedOptions[0].value)
+      console.log($('#ps-prov')[0].selectedOptions[0].value)
 
     }else{
       this.objetoFiltros.provincia=''
       this.filtrarClases()
-            console.log($('#ps-prov')[0].selectedOptions[0].value)
+      console.log($('#ps-prov')[0].selectedOptions[0].value)
 
     }
     
@@ -166,9 +167,9 @@ export class HomeComponent implements OnInit {
     
   }
   handleReset(){
-    
-    $('#rama')[0].value = 'todas' 
-    $('#nivel')[0].value = 'todos'
+
+    $('#rama')[0].value = 'Todas' 
+    $('#nivel')[0].value = 'Todos'
     $('#ps-prov')[0].selectedOptions[0].label = 'Provincia'   
     $('#ps-mun')[0].selectedOptions[0].label = 'Municipio'
     
