@@ -64,6 +64,12 @@ export class ApiService {
 	postLoginProfesor(values){
 		return this.http.post(`${this.baseUrl}/usuariosprofesor/login`, values).toPromise()
 	}
+	//Get user by idUser
+
+	getProfe(idUser){
+		let id = idUser
+		return this.http.get(`${this.baseUrl}/usuariosprofesor/${id}`).toPromise()
+	}
 
 	//Datos del Usuario
 	datosPerfil(){

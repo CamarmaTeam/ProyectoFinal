@@ -1,3 +1,8 @@
-<p>
-  contacto-footer works!
-</p>
+<h1 mat-dialog-title>{{data.nombre}}</h1>
+<h5 mat-dialog-title>Teléfono: {{data.telefono}}</h5>
+<h5 mat-dialog-title>Fax: {{data.fax}}</h5>
+<h5 mat-dialog-title>Dirección: {{data.direccion}}</h5>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cerrar</button>
+    
+</div>

@@ -4,19 +4,28 @@ import { LoginService } from '../login.service'
 import { Clase } from '../models/clase.model';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { AlertaComponent } from '../alerta/alerta.component';
-import { ContactoComponent } from '../contacto/contacto.component'
+import { ContactoComponent } from '../contacto/contacto.component';
+import { FichaComponent } from '../ficha/ficha.component';
 import { Router } from '@angular/router';
 import Pselect from 'pselect.js'
 import * as $ from 'jquery'
+
 export interface DialogData {
   text: string;
 }
 
 export interface DialogDataContacto {
-  nombre: string
-  telefono: string;
+  nombre: string;
+  telefono: number;
 }
 
+export interface DialogDataFicha {
+  nombre: string;
+  telefono: number;
+  provincia: string;
+  ciudad: string;
+  biografia: string;
+}
 
 @Component({
   selector: 'app-home',
@@ -28,6 +37,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('municipio') muni: any
 
   arrClases: Clase[]
+  user: any
   niveles: string[]
   ramas: string[]
   filtroRama: string
@@ -70,13 +80,35 @@ export class HomeComponent implements OnInit {
 
   }
 
-  muestraContacto(): void {
-    window.scrollTo(0, 0);
+  muestraContacto(pUser): void {
+    this.apiService.getProfe(pUser).then((res) => {
+      this.user = res.json()
+     
+    })
+    setTimeout(() => {
+      window.scrollTo(0, 0);
     const dialogRef = this.dialog.open(ContactoComponent, {
       width: '380px',
-      data: {nombre: 'Mariano', telefono: '654112660'}
+      data: {nombre: this.user[0].nombre, telefono: this.user[0].telefono}
 
     })
+    },100)
+
+
+  } 
+  muestraFicha(pUser): void {
+    this.apiService.getProfe(pUser).then((res) => {
+      this.user = res.json()
+     
+    })
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    const dialogRef = this.dialog.open(FichaComponent, {
+      width: '380px',
+      data: {nombre: this.user[0].nombre, telefono: this.user[0].telefono, ciudad: this.user[0].ciudad , provincia: this.user[0].provincia , biografia: this.user[0].biografia }
+
+    })
+    },100)
 
 
   } 
@@ -90,13 +122,34 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/login'])
 
   }
+  noMuestraFicha(): void {
+    window.scrollTo(0, 0);
+    const dialogRef = this.dialog.open(AlertaComponent, {
+      width: '350px',
+      data: {text: 'Para ver esta Información debe registrarse'}
 
-  contacto(){
+    })
+    this.router.navigate(['/login'])
+
+  }
+
+  contacto(pUser){
     let login = this.loginService.isLogin()
     if(login === true){
-      this.muestraContacto()
+      this.muestraContacto(pUser)
+      
     } else {
       this.noMuestraContacto()
+    }    
+  }
+
+  ficha(pUser){
+    let login = this.loginService.isLogin()
+    if(login === true){
+      this.muestraFicha(pUser)
+      
+    } else {
+      this.noMuestraFicha()
     }    
   }
   filtrarClases(){

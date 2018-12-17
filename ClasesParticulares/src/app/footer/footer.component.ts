@@ -38,9 +38,9 @@ export class FooterComponent implements OnInit {
 
   handlePhone() : void {
 		window.scrollTo(0, 0);
-		const dialogRef = this.dialog.open(AlertaComponent, {
+		const dialogRef = this.dialog.open(ContactoFooterComponent, {
 			width: '350px',
-			data: {text: 'DATOS DE CONTACTO \n TEL: 918865289 \n FAX: 918866898 \n DIRECCION: PLAZA DE ESPAÑA, 11'}
+			data: {nombre: 'EncuentraTusClasesParticulares', telefono: '918866987', fax:'918866988', direccion: 'Plaza de España, 11, Madrid'}
 
 		})
 	}

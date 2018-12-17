@@ -46,8 +46,8 @@
            <mat-card-actions>
             <div class="row">
               <div class="text-center col-12 col-xl-5 mb-2">
-               <button (click)="contacto()" class="ui inverted red button"><i class=" phone square icon"></i> Contactar</button>
-               <button class="ui inverted red button">Ficha Profesor</button>
+               <button (click)="contacto(clase.fk_usuarioprofesor)" class="ui inverted red button"><i class=" phone square icon"></i> Contactar</button>
+               <button (click)="ficha(clase.fk_usuarioprofesor)" class="ui inverted red button">Ficha Profesor</button>
              </div>
              <div class="text-center text-md-left text-xl-right col-12 col-md-6 col-xl-3 mb-2">
                <div class="ui labeled button" tabindex="0">
