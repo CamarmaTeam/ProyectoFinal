@@ -16,7 +16,8 @@
 			<i [ngClass]="eye" matSuffix (click)="handleClick()"></i>
 		</mat-form-field>
 		<p *ngIf="error">La contraseña y/o email son incorrectos</p>
-		<button class="col-12  ui inverted red button">Entrar</button>
+		<button class="col-12  ui inverted red button large">Entrar</button>
+		<p class="mt-2">¿Aún no te has registrado?        <a [routerLink]="['/signin']" class="text-center">Regístrate aqui</a></p>
 	</form>
 </div>
 </div>
