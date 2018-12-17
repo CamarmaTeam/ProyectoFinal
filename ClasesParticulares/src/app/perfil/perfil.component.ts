@@ -5,9 +5,14 @@ import { ApiService } from '../api.service';
 import { LoginService } from '../login.service';
 import { Usuario } from '../models/usuario.model';
 import { UsuarioProfesor } from '../models/usuarioProfesor.model';
-import * as $ from 'jquery'
+import * as $ from 'jquery';
+import { AlertaComponent } from '../alerta/alerta.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
+export interface DialogData {
+	text: string;
 
+}
 @Component({
 	selector: 'app-perfil',
 	templateUrl: './perfil.component.html',
@@ -31,7 +36,7 @@ export class PerfilComponent implements OnInit {
 	registrarUsuario: string;
 
 	formModificar: FormGroup;
-	constructor(private apiService: ApiService, private loginService: LoginService) {
+	constructor(private apiService: ApiService, private loginService: LoginService, public dialog: MatDialog) {
 		this.formModificar = new FormGroup({
 			nombre: new FormControl('',[
 				Validators.required,
@@ -152,11 +157,13 @@ export class PerfilComponent implements OnInit {
 			this.usuario = new Usuario(this.formModificar.value)
 			this.apiService.modificarUsuario(this.datos.id, this.usuario).then((res) => {
 				console.log(res.json())
+				this.openDialog()
 			})
 		}else{
 			this.usuarioProfesor = new UsuarioProfesor(this.formModificar.value)
 			this.apiService.modificarUsuarioProfesor(this.datos.id, this.usuarioProfesor).then((res) => {
 				console.log(res.json())
+				this.openDialog()
 			})
 		}
 	}
@@ -201,6 +208,15 @@ export class PerfilComponent implements OnInit {
 	}
 	handleEnvioMun(munRecibido){
 		this.ciudad = munRecibido
+	}
+
+	openDialog(): void {
+		window.scrollTo(0, 0);
+		const dialogRef = this.dialog.open(AlertaComponent, {
+			width: '350px',
+			data: {text: 'El perfil se ha modificado correctamente'}
+
+		})
 	}
 	
 

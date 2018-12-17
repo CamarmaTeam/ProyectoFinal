@@ -21,6 +21,7 @@ import { ClaseComponent } from './clase/clase.component';
 import { AlertaComponent } from './alerta/alerta.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { EliminarComponent } from './eliminar/eliminar.component';
+import { ContactoFooterComponent } from './contacto-footer/contacto-footer.component';
 
 @NgModule({
   declarations: [
@@ -36,9 +37,9 @@ import { EliminarComponent } from './eliminar/eliminar.component';
     ClaseComponent, 
     AlertaComponent, 
     ContactoComponent, 
-    EliminarComponent
+    EliminarComponent, ContactoFooterComponent
   ],
-  entryComponents: [ AlertaComponent, ContactoComponent, EliminarComponent],
+  entryComponents: [ AlertaComponent, ContactoComponent, EliminarComponent, ContactoFooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
