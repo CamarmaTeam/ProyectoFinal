@@ -65,9 +65,15 @@ export class LogInComponent implements OnInit {
 			})						
 		}else{
 			this.apiService.postLoginProfesor(this.formLogIn.value).then((res) => {
-				localStorage.setItem("token",res.json().token);	
-				this.loginService.isLogin()
-				this.router.navigate(['/home'])			
+				if(res.json().error){
+					this.error = true 
+				}else{
+					localStorage.setItem("token",res.json().token);	
+					this.loginService.isLogin()
+					this.router.navigate(['/home'])	
+					this.error = false	
+				}
+
 			})	
 		}
 	}

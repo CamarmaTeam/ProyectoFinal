@@ -49,12 +49,14 @@ export class HomeComponent implements OnInit {
   objetoFiltros: any 
   disabled: boolean
   puntos: number
+  arrVacio: boolean
 
   constructor(private loginService: LoginService, private apiService: ApiService,  public dialog: MatDialog,  private router : Router) { 
   	this.arrClases = []
     this.niveles = ['Bajo', 'Medio', 'Alto']
     this.ramas = ['Deportes', 'Idiomas', 'Teatro']
     this.disabled = true
+    this.arrVacio = false
     
 
     this.objetoFiltros = {
@@ -160,6 +162,11 @@ export class HomeComponent implements OnInit {
   filtrarClases(){
     this.apiService.postClaseByFilter(this.objetoFiltros).then((res) => {
       this.arrClases = res.json()
+      if(this.arrClases.length == 0){
+        this.arrVacio = true
+      }
+      console.log(this.arrClases.length)
+      console.log(this.arrVacio)
     })
   }
   handleRama($event){
@@ -168,14 +175,14 @@ export class HomeComponent implements OnInit {
       this.objetoFiltros.rama = value
       this.filtrarClases()
       this.disabled = false
-      console.log(this.objetoFiltros)
+      
     }else{
       $('#nivel')[0].value = 'Todos'
       this.objetoVacio()
       this.apiService.getClases().then((res) => {
         this.arrClases = res.json()
         this.disabled = true
-        console.log(this.objetoFiltros)
+      
       })
       
     }
@@ -186,11 +193,11 @@ export class HomeComponent implements OnInit {
     if(value != 'todos'){
       this.objetoFiltros.nivel = value
       this.filtrarClases()
-      console.log(this.objetoFiltros)
+      
     }else{
       this.objetoFiltros.nivel=''
       this.filtrarClases()
-      console.log(this.objetoFiltros)
+      
     }
     
   }
@@ -201,12 +208,11 @@ export class HomeComponent implements OnInit {
       setTimeout(() => {
         $('#ps-mun')[0].selectedOptions[0].label = 'Municipio'
       },5)
-      console.log($('#ps-prov')[0].selectedOptions[0].value)
-
+      
     }else{
       this.objetoFiltros.provincia=''
       this.filtrarClases()
-      console.log($('#ps-prov')[0].selectedOptions[0].value)
+      
 
     }
     
@@ -236,9 +242,11 @@ export class HomeComponent implements OnInit {
     this.disabled = true
 
     this.apiService.getClases().then((res) => {
-      this.arrClases = res.json()     
+      this.arrClases = res.json() 
+      this.arrVacio = false    
     })
     console.log(this.objetoFiltros)
+    console.log(this.arrVacio)
   }
   objetoVacio(){
     this.objetoFiltros = {

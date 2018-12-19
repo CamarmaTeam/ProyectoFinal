@@ -1,9 +1,8 @@
 <h1 mat-dialog-title>{{data.nombre}} {{data.apellidos}}</h1>
 <mat-dialog-content>
-	<p>Teléfono: {{data.telefono}}</p>
-	<p>Povincia: {{data.provincia}}</p>
-	<p>Ciudad: {{data.ciudad}}</p>
-	<p>Biografía: {{data.biografia}}</p>
+	<p><strong>Teléfono:</strong> {{data.telefono}}</p>
+	<p><strong>Ubicación:</strong> {{data.ciudad}}, {{data.provincia}}</p>
+	<p><strong>Biografía:</strong> {{data.biografia}}</p>
 </mat-dialog-content>
 <div mat-dialog-actions>
    <button mat-button (click)="onNoClick()">Cerrar</button>

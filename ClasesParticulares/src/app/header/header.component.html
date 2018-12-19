@@ -1,12 +1,13 @@
-<nav class="navbar navbar-dark p-1 p-md-3 ">
-	
-	<a class="navbar-brand col-2 m-0" [routerLink]="['/home']">
-		<img src="../../assets/logo.png" width="60" height="60" alt="">
+<nav class="navbar  p-1 p-md-3 ">
+	<div class="navbar-brand col-2 m-0">
+	<a [routerLink]="['/home']" >
+		<img src="../../assets/logo.png"  width="60" height="60" alt="Home">
 	</a>
+	</div>
 	<h2 class="col-6">Encuentra tu clase particular</h2>
 	<div *ngIf="!this.loginService.isLogin()" class="text-right col-3">
-		<a class="navbar-brand m-0 p-2 border-right" [routerLink]="['/login']">Identifícate</a>
-		<a class="navbar-brand m-0 p-2 border-left" [routerLink]="['/signin']">Regístrate</a>
+		<a class="navbar-brand m-0 p-2 border-right border-secondary" [routerLink]="['/login']">Identifícate</a>
+		<a class="navbar-brand m-0 p-2 border-left border-secondary" [routerLink]="['/signin']">Regístrate</a>
 	</div>
 	<button *ngIf="this.loginService.isProfesor()" [routerLink]="['/nuevaclase']" class="ui inverted secondary button big col-2 m-0"><i class="pencil alternate icon"></i>Añadir clase</button>
 	<div *ngIf="this.loginService.isLogin()" class="ui dropdown col-2 text-right">

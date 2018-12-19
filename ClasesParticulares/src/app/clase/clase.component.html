@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row colorfondo">
+    <mat-card class="col-11 bg-light mx-auto mt-3 mb-3 text-center arrVacio"><h3 *ngIf="!arrVacio">Clases publicadas </h3><h3 *ngIf="arrVacio">No hay clases añadidas </h3></mat-card>
     <div class="col-12 col-md-9 mx-auto" *ngFor="let clase of arrClases">
       <div class="mx-auto">
         <mat-card class="example-card mx-auto bg-light mt-3 mb-3">
@@ -29,8 +30,8 @@
          </div>
          <div class=" text-right text-md-right text-xl-right col-12 col-md-6 col-xl-4">
           
-           <i class="coloriconos big share square link icon"></i>
-           <i *ngIf="clase.claseout" class=" big car icon coloriconos"></i>
+           <!-- <i class="coloriconos big share square link icon"></i> -->
+           <i *ngIf="clase.claseout" class=" big car icon coloriconos" alt="pep"></i>
            <i *ngIf="clase.clasein" class=" big building icon coloriconos"></i>
            <!-- <i *ngIf="pagoOnline()" class="red big cc paypal volume icon"></i> -->
          </div>

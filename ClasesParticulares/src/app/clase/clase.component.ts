@@ -21,9 +21,11 @@ export class ClaseComponent implements OnInit {
 	arrClases: Clase[]
 	fkusuarioprofesor: number;
 	ClaseEliminar: number;
+	arrVacio: boolean;
 
 	constructor(private apiService: ApiService, public dialog: MatDialog,  private router : Router ) {
 		this.arrClases = [];
+		this.arrVacio = false
 	}
 
 	ngOnInit() {
@@ -36,6 +38,9 @@ export class ClaseComponent implements OnInit {
 			this.apiService.getClasesByUsuario(this.fkusuarioprofesor).then((res) => {
 				console.log(res.json())
 				this.arrClases = res.json()
+				if(this.arrClases.length == 0){
+					this.arrVacio = true
+				}
 			})
 
 		})
@@ -48,6 +53,9 @@ export class ClaseComponent implements OnInit {
 			this.apiService.getClasesByUsuario(this.fkusuarioprofesor).then((res) => {
 				console.log(res.json())
 				this.arrClases = res.json()
+				if(this.arrClases.length == 0){
+					this.arrVacio = true
+				}
 			})
 		}) 
 	}

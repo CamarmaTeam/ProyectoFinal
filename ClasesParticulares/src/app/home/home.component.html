@@ -30,12 +30,14 @@
     </div>
 
     <div class="row col-12 col-md-9 colorfondo">
-      <div  *ngFor="let clase of arrClases" class="col-12 altura">
+      <mat-card class="col-12 bg-light mx-auto mt-3 mb-3 text-center arrVacio"><h3 *ngIf="arrVacio">Lo sentimos, no se han encontrado resultados</h3><h3 *ngIf="!arrVacio">Lista de clases disponbles</h3></mat-card>
+      <div  *ngFor="let clase of arrClases" class="col-12 ">
         <div class="mx-auto">
           <mat-card class="example-card bg-light mx-auto mt-3 mb-3">
             <mat-card-header>
+              <!-- <mat-card-title *ngIf="arrVacio">No se han encontrado clases con los filtros seleccionados</mat-card-title> -->
               <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>{{clase.nombreclase}} en <i class="map marker alternate icon"></i>{{clase.ciudad}}</mat-card-title>
+              <mat-card-title>{{clase.nombreclase}} en <i class="map marker alternate icon"></i>{{clase.ciudad}}, {{clase.provincia}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
               <p>
