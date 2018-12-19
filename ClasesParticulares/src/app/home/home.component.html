@@ -30,7 +30,7 @@
     </div>
 
     <div class="row col-12 col-md-9 colorfondo">
-      <div  *ngFor="let clase of arrClases" class="col-12">
+      <div  *ngFor="let clase of arrClases" class="col-12 altura">
         <div class="mx-auto">
           <mat-card class="example-card bg-light mx-auto mt-3 mb-3">
             <mat-card-header>
@@ -60,7 +60,7 @@
              </div>
            </div>
            <div class=" text-center text-md-right text-xl-right col-12 col-md-6 col-xl-4">
-             <i class="big share square link icon coloriconos"></i>
+             <!-- <i class="big share square link icon coloriconos"></i> -->
              <i *ngIf="clase.claseout" class="big car icon coloriconos"></i>
              <i *ngIf="clase.clasein" class="big building icon coloriconos"></i>
              <!-- <i *ngIf="pagoOnline()" class="red big cc paypal volume icon"></i> -->

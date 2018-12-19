@@ -4,7 +4,7 @@
 }
 
 .example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-image: url('https://image.freepik.com/foto-gratis/composicion-libros-libro-abierto_23-2147690555.jpg');
   background-size: cover;
 }
 .styled-select {
@@ -34,6 +34,7 @@ select{
 }
 .colorfondo{
 	background-color: #bdc3c7;
+	min-height: 650px;
 }
 .coloriconos{
 	color: #545454;
@@ -46,4 +47,7 @@ select{
 }
 .colorselect{
 	background-color: white;
+}
+.altura{
+	max-height: 220px;
 }

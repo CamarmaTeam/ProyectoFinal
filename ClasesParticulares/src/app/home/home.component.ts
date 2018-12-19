@@ -16,11 +16,13 @@ export interface DialogData {
 
 export interface DialogDataContacto {
   nombre: string;
+  apellidos: string;
   telefono: number;
 }
 
 export interface DialogDataFicha {
   nombre: string;
+  apellidos: string;
   telefono: number;
   provincia: string;
   ciudad: string;
@@ -46,12 +48,14 @@ export class HomeComponent implements OnInit {
   filtroCiudad: string
   objetoFiltros: any 
   disabled: boolean
+  puntos: number
 
   constructor(private loginService: LoginService, private apiService: ApiService,  public dialog: MatDialog,  private router : Router) { 
   	this.arrClases = []
     this.niveles = ['Bajo', 'Medio', 'Alto']
     this.ramas = ['Deportes', 'Idiomas', 'Teatro']
     this.disabled = true
+    
 
     this.objetoFiltros = {
       rama : '' ,
@@ -89,7 +93,7 @@ export class HomeComponent implements OnInit {
       window.scrollTo(0, 0);
     const dialogRef = this.dialog.open(ContactoComponent, {
       width: '380px',
-      data: {nombre: this.user[0].nombre, telefono: this.user[0].telefono}
+      data: {nombre: this.user[0].nombre, apellidos: this.user[0].apellidos, telefono: this.user[0].telefono}
 
     })
     },100)
@@ -97,6 +101,7 @@ export class HomeComponent implements OnInit {
 
   } 
   muestraFicha(pUser): void {
+    console.log('muestra ficha')
     this.apiService.getProfe(pUser).then((res) => {
       this.user = res.json()
      
@@ -105,7 +110,7 @@ export class HomeComponent implements OnInit {
       window.scrollTo(0, 0);
     const dialogRef = this.dialog.open(FichaComponent, {
       width: '380px',
-      data: {nombre: this.user[0].nombre, telefono: this.user[0].telefono, ciudad: this.user[0].ciudad , provincia: this.user[0].provincia , biografia: this.user[0].biografia }
+      data: {nombre: this.user[0].nombre, apellidos: this.user[0].apellidos, telefono: this.user[0].telefono, ciudad: this.user[0].ciudad , provincia: this.user[0].provincia , biografia: this.user[0].biografia }
 
     })
     },100)

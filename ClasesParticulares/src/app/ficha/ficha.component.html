@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>{{data.nombre}}</h1>
+<h1 mat-dialog-title>{{data.nombre}} {{data.apellidos}}</h1>
 <mat-dialog-content>
 	<p>Teléfono: {{data.telefono}}</p>
 	<p>Povincia: {{data.provincia}}</p>
@@ -8,3 +8,5 @@
 <div mat-dialog-actions>
    <button mat-button (click)="onNoClick()">Cerrar</button>
 </div>
+
+
