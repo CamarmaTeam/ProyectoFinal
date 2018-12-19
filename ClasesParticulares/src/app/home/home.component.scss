@@ -1,0 +1,53 @@
+@import '../../variables.scss';
+.example-card {
+  max-width: 100%;
+}
+
+.example-header-image {
+  background-image: url('https://image.freepik.com/foto-gratis/composicion-libros-libro-abierto_23-2147690555.jpg');
+  background-size: cover;
+}
+.styled-select {
+   background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+   height: 29px;
+   overflow: hidden;
+   width: 240px;
+}
+.semi-square {
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+}
+.blue    { background-color: #3b8ec2; }
+
+hr{
+	height: 1px ;
+	background-color: rgba(0, 0, 0, .42);
+	border: 0 !important;
+}
+select{
+	text-decoration: none;
+	outline: none;
+	background-color: rgba( 22,33,12, 0);
+	border: 0;
+	// color: rgba(0,0,0,.54);
+}
+.colorfondo{
+	background-color: #bdc3c7;
+	min-height: 650px;
+}
+.coloriconos{
+	color: #545454;
+}
+.colorpuntos{
+	background-color: #bdc3c7;
+}
+.colorestrella{
+	color: #ff695e;
+}
+.colorselect{
+	background-color: white;
+}
+.altura{
+	max-height: 220px;
+}

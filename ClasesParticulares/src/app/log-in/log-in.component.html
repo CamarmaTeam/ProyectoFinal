@@ -1,17 +1,23 @@
 <div class="container-fluid p-5 ">
-	<div class="row p-5">
-		<form class="p-5 mx-auto col-5 bg-light border"
+	<div class="row p-md-5">
+		<form class="p-3 p-md-5 mx-auto col-5 bg-light col-12 col-md-6"
 		[formGroup]="formLogIn"
 		(ngSubmit)="envioFormulario()" >
-			<mat-form-field class="p-2 col-12">
-				<input  matInput placeholder="Introduce tu email" formControlName="email">
-				<mat-error *ngIf="formLogIn.controls.email.invalid">{{getErrorMessage()}}</mat-error>
-			</mat-form-field>
-			<mat-form-field class="p-2 col-12">
-				<input  matInput placeholder="Introduce tu contraseña" formControlName="password" [type]="hide ? 'password' : 'text'">
-				<i [ngClass]="eye" matSuffix (click)="handleClick()"></i>
-			</mat-form-field>
-			<button class="col-12  ui inverted red button">Entrar</button>
-		</form>
-	</div>
+		<mat-radio-group>
+			<mat-radio-button (click)="handleClickInicio($event)" class="col-12 p-1" color="primary" checked="defaultChecked" id="alumno" value="alumno">Soy alumno</mat-radio-button>
+			<mat-radio-button (click)="handleClickInicio($event)" class="col-12 p-1" color="primary"  id="profesor" value="profesor">Soy profesor</mat-radio-button>
+		</mat-radio-group>
+		<mat-form-field class="p-2 col-12">
+			<input  matInput placeholder="Introduce tu email" formControlName="email">
+			<mat-error *ngIf="formLogIn.controls.email.invalid">{{getErrorMessage()}}</mat-error>
+		</mat-form-field>
+		<mat-form-field class="p-2 col-12">
+			<input  matInput placeholder="Introduce tu contraseña" formControlName="contrasena" [type]="hide ? 'password' : 'text'">
+			<i [ngClass]="eye" matSuffix (click)="handleClick()"></i>
+		</mat-form-field>
+		<p *ngIf="error">La contraseña y/o email son incorrectos</p>
+		<button class="col-12  ui inverted red button large">Entrar</button>
+		<p class="mt-2">¿Aún no te has registrado?        <a [routerLink]="['/signin']" class="text-center">Regístrate aqui</a></p>
+	</form>
+</div>
 </div>

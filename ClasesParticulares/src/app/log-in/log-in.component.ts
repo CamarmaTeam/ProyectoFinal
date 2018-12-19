@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { ApiService } from '../api.service';
+import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
+
+export interface DialogData {
+	text: string;
+
+}
 
 @Component({
 	selector: 'app-log-in',
@@ -11,20 +19,22 @@ export class LogInComponent implements OnInit {
 	formLogIn: FormGroup;
 	hide: boolean ;
 	eye: string;
+	tipoUsuario: string;
+	error : boolean;
 	
-	
-	constructor() {
+	constructor(private apiService: ApiService, private loginService: LoginService, private router : Router) {
 		this.formLogIn = new FormGroup({
 			email: new FormControl('', [
 				Validators.required,
 				Validators.email
 				]),
-			password: new FormControl('',[
+			contrasena: new FormControl('',[
 				Validators.required
 				])
 		})
 		this.hide = true;
 		this.eye = ' grey eye icon';
+		this.tipoUsuario = 'alumno'
 	}
 
 	ngOnInit() {
@@ -41,8 +51,28 @@ export class LogInComponent implements OnInit {
 	}
 
 	envioFormulario(){
-
+		if(this.tipoUsuario == 'alumno'){
+			this.apiService.postLoginUsuario(this.formLogIn.value).then((res) => {
+				if(res.json().error){
+					this.error = true
+				}else{
+					localStorage.setItem("token",res.json().token);	
+					this.loginService.isLogin()
+					this.router.navigate(['/home'])
+					this.error = false
+				}
+				
+			})						
+		}else{
+			this.apiService.postLoginProfesor(this.formLogIn.value).then((res) => {
+				localStorage.setItem("token",res.json().token);	
+				this.loginService.isLogin()
+				this.router.navigate(['/home'])			
+			})	
+		}
 	}
 
-
+	handleClickInicio($event){
+		this.tipoUsuario = $event.currentTarget.id;
+	}
 }

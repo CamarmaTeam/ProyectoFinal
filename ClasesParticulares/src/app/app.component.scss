@@ -3,6 +3,12 @@
 .colorprincipal {
 	background-color: $colorfijo;
 }
+.colorfondo{
+	background-color: $colorfondo;
+}
 *{
 	font-size: $tamanofuente ;
+}
+.alturaBbody{
+	min-height: 600px;
 }

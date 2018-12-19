@@ -1,22 +1,33 @@
 export class Clase{
-
-	nombre: string
-	ubicacion: string	
-	asignatura: string
-	valoracionProfesor: number
-	fotoProfesor: string
-	pagoWeb: boolean
-	telefono: string
+	fk_usuarioprofesor: number;
+	nombreclase: string;
+	rama: string;	
+	descripcion: string
+	nivel: string;
+	foto: string;
+	ciudad: string;
+	provincia: string;	
+	clasein: boolean;
+	claseout: boolean;
+	claseciudad: boolean;
+	clasefueraciudad: boolean;
 
 	constructor(values) {
 
-		this.nombre = values.nombre
-		this.ubicacion = values.ubicacion
-		this.asignatura = values.asignatura
-		this.valoracionProfesor = values.valoracionProfesor
-		this.fotoProfesor = values.fotoProfesor
-		this.pagoWeb = values.pagoWeb
-		this.telefono = values.telefono
-
+		this.fk_usuarioprofesor = values.fk_usuarioprofesor
+		this.nombreclase = values.nombreclase
+		this.rama = values.rama
+		this.descripcion = values.descripcion
+		this.nivel = values.nivel
+		this.foto = values.foto
+		this.ciudad = values.ciudad
+		this.provincia = values.provincia		
+		this.clasein = values.clasein
+		this.claseout = values.claseout
+		this.claseciudad = values.claseciudad
+		this.clasefueraciudad = values.clasefueraciudad
 	}
 }
+
+	
+

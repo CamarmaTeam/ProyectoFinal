@@ -1,10 +1,39 @@
-<nav class="navbar navbar-dark  p-3">
-	<a class="navbar-brand" href="#">
-		<img src="../../assets/logo.png" width="60" height="50" alt="">
+<nav class="navbar navbar-dark p-1 p-md-3 ">
+	
+	<a class="navbar-brand col-2 m-0" [routerLink]="['/home']">
+		<img src="../../assets/logo.png" width="60" height="60" alt="">
 	</a>
-	<div class="text-right">
-		<a class="navbar-brand m-0 p-2 border-right" [routerLink]="['/login']">Log In</a>
-		<a class="navbar-brand m-0 p-2 border-left" [routerLink]="['/signin']">Sign In</a>
+	<h2 class="col-6">Encuentra tu clase particular</h2>
+	<div *ngIf="!this.loginService.isLogin()" class="text-right col-3">
+		<a class="navbar-brand m-0 p-2 border-right" [routerLink]="['/login']">Identifícate</a>
+		<a class="navbar-brand m-0 p-2 border-left" [routerLink]="['/signin']">Regístrate</a>
 	</div>
+	<button *ngIf="this.loginService.isProfesor()" [routerLink]="['/nuevaclase']" class="ui inverted secondary button big col-2 m-0"><i class="pencil alternate icon"></i>Añadir clase</button>
+	<div *ngIf="this.loginService.isLogin()" class="ui dropdown col-2 text-right">
+		
+		<div class="ui top right pointing dropdown " [matMenuTriggerFor]="menu">
+			Perfil
+			<i class="inverted large bars icon" ></i>
+			<mat-menu #menu="matMenu">
+				<div class="item text-center">
+					<h5>Hola Usuario</h5>
+				</div>
+				<hr>
+				<div [routerLink]="['/perfil']" class="item" mat-menu-item>
+					<i class="user icon"></i>
+					Mi cuenta
+				</div>
+				<div *ngIf="this.loginService.isProfesor()" [routerLink]="['/clases']"class="item" mat-menu-item>
+					<i class="book icon"></i>
+					Mis clases
+				</div>
+				<div (click)="handleClick()"class="item" mat-menu-item>
+					<i class="sign-out icon"></i>
+					Cerrar sesión
+				</div>
+			</mat-menu>
+		</div>
+	</div>
+	
 </nav>
 

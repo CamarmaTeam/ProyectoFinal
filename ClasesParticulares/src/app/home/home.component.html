@@ -1,5 +1,85 @@
-<ul>
-	<li *ngFor="let clase of arrClases">
-		{{clase.nombre}}
-	</li>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-3  p-4  mr-2 bg-light text-left">
+      <h3 class="pb-3 mb-3 border-bottom border-secondary">Filtros</h3>
+      <div class="col-12 p-1 pb-2 mb-3 border-bottom border-secondary">
+        <h5>Rama</h5>
+        <select class=" col-12 p-0 " (click)="handleRama($event)" id="rama" placeholder="Rama" >
+          <option >Todas</option>
+          <option *ngFor="let rama of ramas"  [value]="rama">{{rama}}</option>
+        </select>
+      </div>
+      
+      <div class="col-12 p-1 pb-2 mb-3 border-bottom border-secondary">
+        <h5>Nivel</h5>
+        <select class="col-12 p-0" placeholder="Nivel" (click)="handleNivel($event)" id="nivel" [disabled]="disabled">
+          <option>Todos</option>
+          <option *ngFor="let nivel of niveles" [value]="nivel">{{nivel}}</option>
+        </select>
+      </div>
+      <div class="p-1 pb-2 mb-3 border-bottom border-secondary">
+        <h5>Provincia</h5>
+        <select class=" col-12 p-0" placeholder="Seleccione provincia" id="ps-prov" (change)="handleProv($event)" #provincia [disabled]="disabled"></select>
+      </div>
+
+      <div class="p-1 pb-2 mb-3 border-bottom border-secondary">
+        <h5>Municipio</h5>
+        <select class=" col-12 p-0" placeholder="Seleccione municipio" id="ps-mun" (change)="handleMun($event)" #municipio [disabled]="disabled"></select>
+      </div>
+      <button (click)="handleReset()" [routerLink]="['/home']" class="ui inverted secondary button mt-3">Borrar filtros</button>
+    </div>
+
+    <div class="row col-12 col-md-9 colorfondo">
+      <div  *ngFor="let clase of arrClases" class="col-12 altura">
+        <div class="mx-auto">
+          <mat-card class="example-card bg-light mx-auto mt-3 mb-3">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>{{clase.nombreclase}} en <i class="map marker alternate icon"></i>{{clase.ciudad}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>
+               {{clase.descripcion}}
+             </p>
+           </mat-card-content>
+           <h5>Nivel {{clase.nivel}}</h5>
+           <mat-card-actions>
+            <div class="row">
+              <div class="text-center col-12 col-xl-5 mb-2">
+               <button (click)="contacto(clase.fk_usuarioprofesor)" class="ui inverted red button"><i class=" phone square icon"></i> Contactar</button>
+               <button (click)="ficha(clase.fk_usuarioprofesor)" class="ui inverted red button">Ficha Profesor</button>
+             </div>
+             <div class="text-center text-md-left text-xl-right col-12 col-md-6 col-xl-3 mb-2">
+               <div class="ui labeled button" tabindex="0">
+                <div class="ui button colorpuntos">
+                  <i class="star icon colorestrella"></i>Puntos
+                </div>
+                <a class="ui basic colorpuntos left pointing label">
+                 3.5
+               </a>
+             </div>
+           </div>
+           <div class=" text-center text-md-right text-xl-right col-12 col-md-6 col-xl-4">
+             <!-- <i class="big share square link icon coloriconos"></i> -->
+             <i *ngIf="clase.claseout" class="big car icon coloriconos"></i>
+             <i *ngIf="clase.clasein" class="big building icon coloriconos"></i>
+             <!-- <i *ngIf="pagoOnline()" class="red big cc paypal volume icon"></i> -->
+           </div>
+         </div>
+       </mat-card-actions>
+     </mat-card>
+   </div>
+ </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+

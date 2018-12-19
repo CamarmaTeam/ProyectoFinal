@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatCheckboxModule } from '@angular/material/';
+import { MatInputModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatCheckboxModule, MatSelectModule, MatCardModule, MatMenuModule, MatRadioModule, MatListModule } from '@angular/material/';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -13,26 +14,51 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { PSelectComponent } from './p-select/p-select.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { NuevaClaseComponent } from './nueva-clase/nueva-clase.component';
+import { ClaseComponent } from './clase/clase.component';
+import { AlertaComponent } from './alerta/alerta.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { EliminarComponent } from './eliminar/eliminar.component';
+import { ContactoFooterComponent } from './contacto-footer/contacto-footer.component';
+import { FichaComponent } from './ficha/ficha.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent, 
-    FooterComponent, LogInComponent, SignInComponent
+    FooterComponent, 
+    LogInComponent, 
+    SignInComponent, 
+    PSelectComponent, 
+    PerfilComponent, 
+    NuevaClaseComponent, 
+    ClaseComponent, 
+    AlertaComponent, 
+    ContactoComponent, 
+    EliminarComponent, ContactoFooterComponent, FichaComponent
   ],
+  entryComponents: [ AlertaComponent, ContactoComponent, EliminarComponent, ContactoFooterComponent, FichaComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
+    MatDialogModule,
     MatIconModule,
     MatFormFieldModule,
     MatCheckboxModule,
+    MatSelectModule,
+    MatCardModule,
+    MatMenuModule,
+    MatRadioModule,
+    MatListModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

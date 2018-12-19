@@ -35,10 +35,7 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/semantic-ui/dist/semantic.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-<<<<<<< HEAD
               "node_modules/pselect.js/dist/pselect.js"
-=======
->>>>>>> release/Cambio_ssd_v1.0.1
             ]
           },
           "configurations": {
